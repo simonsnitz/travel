@@ -1,0 +1,44 @@
+/* Narrower than the page container: these pages are lists and forms, which read best in a single column. */
+.column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+/* As tall as the button it sometimes holds, so the title doesn't move when a new trip is saved. */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 42px;
+}
+
+.title {
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.section > h2 {
+  font-size: 1.5rem;
+}
+
+.danger {
+  padding-top: 32px;
+  border-top: 1px dashed var(--border-strong);
+}

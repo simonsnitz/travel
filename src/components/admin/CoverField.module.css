@@ -1,0 +1,32 @@
+.cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+
+.preview {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 240px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.choose {
+  cursor: pointer;
+}
+
+/*
+ * The real file input is hidden and its label is drawn as the button, so the
+ * label has to show the input's focus and disabled states.
+ */
+.file:focus-visible + .choose {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.file:disabled + .choose {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

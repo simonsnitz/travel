@@ -1,0 +1,29 @@
+:global(.page).screen {
+  display: grid;
+  justify-items: center;
+  padding-top: clamp(32px, 9vh, 96px);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  padding: 28px 22px 26px;
+}
+
+.intro {
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+:global(.btn).submit {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+}

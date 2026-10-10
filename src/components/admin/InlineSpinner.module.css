@@ -1,0 +1,8 @@
+/* Drawn in the color of the text around it, so it shows up on any button. */
+:global(.spinner).inline {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-color: color-mix(in srgb, currentColor 35%, transparent);
+  border-top-color: currentColor;
+}

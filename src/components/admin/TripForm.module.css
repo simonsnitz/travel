@@ -1,0 +1,80 @@
+.form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  padding: 22px 18px;
+}
+
+.address {
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.address strong {
+  font-weight: 600;
+}
+
+.warning {
+  display: block;
+  margin-top: 4px;
+}
+
+/* Stacked on a phone, where two date fields side by side are too cramped to read. */
+.dates {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px 14px;
+}
+
+/* iOS Safari sizes a date field to its value and centers it; this keeps it in line with the other fields. */
+.date {
+  display: block;
+  min-width: 0;
+}
+
+.date::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  /* Room for the navbar above and a little air below when this is scrolled into view. */
+  scroll-margin: calc(var(--nav-height) + 16px) 0 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+/* Wide enough for every label it shows, so it doesn't change size while saving. */
+:global(.btn).save {
+  min-width: 152px;
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.saved {
+  color: var(--success);
+}
+
+@media (min-width: 560px) {
+  .form {
+    padding: 28px;
+  }
+
+  .dates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

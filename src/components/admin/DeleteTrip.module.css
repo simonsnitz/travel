@@ -1,0 +1,11 @@
+.zone {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 14px;
+}
+
+/* Outlined, so it reads as a button even though it sits apart from the others. */
+:global(.btn).delete {
+  border-color: var(--danger);
+}
