@@ -1,0 +1,99 @@
+# Builds the site and publishes it to GitHub Pages whenever main changes.
+#
+# One-time setup in the repository: Settings > Pages > Build and deployment >
+# Source: "GitHub Actions". Until that is chosen, the "Configure Pages" step fails.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  # Adds a "Run workflow" button in the Actions tab, to republish without a commit.
+  workflow_dispatch:
+
+# What this workflow's token may do: read the code and publish to Pages. Nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Deployments run one at a time. A newer push waits for the one in progress to
+# finish rather than cancelling it half-way through publishing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Without these two values the build still succeeds, but it produces the demo
+      # site with sample content. This step is what stops that from ever replacing
+      # the real site.
+      - name: Check the Supabase settings
+        run: |
+          file=.env.production
+          fail() {
+            echo "::error file=$file::$1"
+            exit 1
+          }
+          # Reads one value the way Vite will: the last assignment wins, and
+          # quotes, a leading "export" and Windows line endings are ignored.
+          setting() {
+            grep -E "^[[:space:]]*(export[[:space:]]+)?$1[[:space:]]*=" "$file" | tail -n 1 | cut -d= -f2- | tr -d "\r\"'" | awk '{ print $1 }' || true
+          }
+
+          [ -f "$file" ] || fail "$file is missing, so this build would publish the demo site instead of the real one. Add it with VITE_SUPABASE_URL and VITE_SUPABASE_KEY (see README.md)."
+          url=$(setting VITE_SUPABASE_URL)
+          key=$(setting VITE_SUPABASE_KEY)
+          [ -n "$url" ] || fail "VITE_SUPABASE_URL is not set in $file, so this build would publish the demo site instead of the real one."
+          [ -n "$key" ] || fail "VITE_SUPABASE_KEY is not set in $file, so this build would publish the demo site instead of the real one."
+          case "$url" in
+            https://*) ;;
+            *) fail "VITE_SUPABASE_URL should be the project URL from Supabase, starting with https://" ;;
+          esac
+
+          # The key ends up in the published JavaScript, where anyone can read it. That is
+          # fine for the publishable (anon) key and a disaster for the secret one.
+          secret="VITE_SUPABASE_KEY is a SECRET key. It is now public in this repository: replace it in Supabase straight away (Settings > API Keys), then put the publishable key in $file instead."
+          case "$key" in
+            sb_secret_*) fail "$secret" ;;
+          esac
+          # Older keys are tokens whose middle part says which role they act as.
+          claims=$(printf '%s' "$key" | cut -s -d. -f2 | tr '_-' '/+')
+          case $(( ${#claims} % 4 )) in
+            2) claims="$claims==" ;;
+            3) claims="$claims=" ;;
+          esac
+          if printf '%s' "$claims" | base64 -d 2>/dev/null | grep -q '"role"[[:space:]]*:[[:space:]]*"service_role"'; then
+            fail "$secret"
+          fi
+          echo "The build will use the Supabase project at $url"
+
+      # Placed before the build so that a repository where Pages has not been switched
+      # on yet (see the top of this file) fails in seconds rather than after the build.
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
