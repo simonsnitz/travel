@@ -96,12 +96,21 @@ async function renderJpeg(source: ImageSource, maxEdge: number, quality: number)
 
 // ── Videos ────────────────────────────────────────────────────────────────
 
+// The formats phones record and browsers play. Anything else (AVI, MKV, ...)
+// would upload fine and then never play for readers.
+const VIDEO_TYPES = ['video/mp4', 'video/quicktime', 'video/x-m4v', 'video/webm']
 const VIDEO_EXTENSIONS = ['mp4', 'mov', 'm4v', 'webm']
 
 /** Throws a user-facing error if the file can't be uploaded as a video clip. */
 export function assertVideoFile(file: File): void {
-  const isVideo = file.type.startsWith('video/') || VIDEO_EXTENSIONS.includes(extensionOf(file.name))
-  if (!isVideo) throw new Error(`"${file.name}" isn't a video file.`)
+  // Some pickers hand over files with no type, so the extension is checked as well.
+  const playable = VIDEO_TYPES.includes(file.type) || VIDEO_EXTENSIONS.includes(extensionOf(file.name))
+  if (!playable) {
+    throw new Error(
+      `"${file.name}" isn't a video format browsers can play. Use an MP4, MOV, or WebM clip, ` +
+        'or put it on YouTube and paste the link instead.',
+    )
+  }
   if (file.size > MAX_VIDEO_BYTES) {
     throw new Error(
       `"${file.name}" is ${formatBytes(file.size)}. Uploaded clips can be at most ${formatBytes(MAX_VIDEO_BYTES)}; ` +
