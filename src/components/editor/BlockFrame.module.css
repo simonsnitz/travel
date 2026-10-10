@@ -1,0 +1,63 @@
+.block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+/* The block being worked in stands out; the rest stay quiet. */
+.block:focus-within {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* A text block's writing area has no outline of its own, so its frame carries the focus ring. */
+.block:has(textarea:focus-visible) {
+  border-color: var(--accent);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 4px 0 16px;
+}
+
+.kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tools {
+  display: flex;
+  flex: none;
+}
+
+/* Ghost buttons in the muted ink, so the header reads as a margin note until it is needed. */
+.tools .tool {
+  color: var(--text-muted);
+}
+
+.tools .tool:not(:disabled):hover,
+.block:focus-within .tools .tool:not(:disabled) {
+  color: var(--text);
+}
+
+.tools .tool:global(.btn-danger):not(:disabled):hover,
+.block:focus-within .tools .tool:global(.btn-danger) {
+  color: var(--danger);
+}
+
+.body {
+  padding: 0 16px 16px;
+}

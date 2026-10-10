@@ -1,0 +1,24 @@
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 20px;
+}
+
+.banner > p {
+  flex: 1 1 220px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Two classes, so this wins over .btn whatever order the stylesheets load in. */
+.actions .choice {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}

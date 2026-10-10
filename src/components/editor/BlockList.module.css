@@ -1,0 +1,6 @@
+/* The gaps between blocks are the insert controls themselves (see AddBlock), so the list adds no spacing of its own. */
+.list {
+  display: grid;
+  /* Lets long file names and links shrink instead of widening the column. */
+  grid-template-columns: minmax(0, 1fr);
+}

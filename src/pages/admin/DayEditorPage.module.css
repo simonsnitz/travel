@@ -1,0 +1,6 @@
+/* The editor's own styles live with it, in components/editor. This page only shows what stands in for it. */
+
+/* Keeps a long error message to a readable line length. */
+.notice > p {
+  max-width: 46ch;
+}

@@ -1,0 +1,95 @@
+/*
+ * One column the width of a line of prose, like a page of a notebook.
+ *
+ * On phones the action bar is fixed over the bottom of the screen (see
+ * ActionBar), which publishes its height here so that the last block can
+ * always be scrolled clear of it.
+ */
+.editor {
+  max-width: var(--prose-width);
+  margin: 0 auto;
+  padding-bottom: calc(var(--editor-bar-height, 120px) + 8px);
+}
+
+.sheet {
+  transition: opacity 0.15s;
+}
+
+/* Waiting on a decision (restore or discard) or on a delete: visible, but out of reach. */
+.frozen {
+  opacity: 0.45;
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* ── Location ───────────────────────────────────────────────────────────── */
+
+.location {
+  position: relative;
+}
+
+.location > svg {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  color: var(--accent);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/*
+ * A line to write on rather than a box to fill in. The element selector
+ * outranks the shared .input rules it builds on.
+ */
+input.place {
+  padding: 10px 4px 10px 30px;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+/* The line itself thickens and takes the accent color, in place of an outline around nothing. */
+input.place:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent);
+}
+
+/* ── Preview ────────────────────────────────────────────────────────────── */
+
+.preview {
+  display: grid;
+  gap: 24px;
+}
+
+.preview > :global(.hint) {
+  text-align: center;
+}
+
+/* ── Delete ─────────────────────────────────────────────────────────────── */
+
+.danger {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Two classes, so this wins over .btn whatever order the stylesheets load in. */
+.danger .delete {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}
+
+/* From here up the action bar sits in the flow of the page and needs no room made for it. */
+@media (min-width: 641px) {
+  .editor {
+    padding-bottom: 0;
+  }
+}

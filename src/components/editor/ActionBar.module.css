@@ -1,0 +1,114 @@
+/*
+ * On a phone the bar is fixed to the bottom edge of the screen, full width,
+ * where a thumb can reach it. (The editor leaves room for it; see DayEditor.)
+ */
+.bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* Above the "demo mode" flag, which would otherwise sit on top of the buttons. */
+  z-index: 60;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  /* Clear of the home indicator, and of the notch when the phone is on its side. */
+  padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+  border-top: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.status {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.message > svg,
+.spinner {
+  flex: none;
+}
+
+.message .spinner {
+  width: 16px;
+  height: 16px;
+}
+
+.saved > svg {
+  color: var(--success);
+}
+
+.failed {
+  color: var(--danger);
+}
+
+/* Two equal buttons across the screen: big targets for a thumb. */
+.actions {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+}
+
+.actions > * {
+  flex: 1;
+}
+
+/* Two classes, so this wins over .btn whatever order the stylesheets load in. */
+.status .small {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}
+
+/*
+ * With more room the bar becomes a card floating at the bottom of the writing
+ * column. Being sticky rather than fixed, it comes to rest under the last
+ * block once the page is scrolled to the end.
+ */
+@media (min-width: 641px) {
+  .bar {
+    position: sticky;
+    right: auto;
+    bottom: 16px;
+    left: auto;
+    margin-top: 32px;
+  }
+
+  .inner {
+    padding: 10px 12px 10px 20px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .status {
+    flex-basis: 240px;
+  }
+
+  .actions {
+    flex: none;
+  }
+
+  .actions > * {
+    flex: none;
+  }
+}

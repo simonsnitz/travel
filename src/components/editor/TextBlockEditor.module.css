@@ -1,0 +1,42 @@
+.text {
+  display: grid;
+  gap: 4px;
+}
+
+/*
+ * The writing surface: no box of its own, just text on the block's paper, set
+ * like the prose on the public page so that writing looks like the result. The
+ * element selector outranks the shared .textarea rules it builds on.
+ *
+ * It must stay a plain block in a plain block (.holder): the height is measured
+ * by letting it collapse, and a grid or flex parent would stretch it back out.
+ */
+textarea.paper {
+  display: block;
+  min-height: 0;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  overflow: hidden;
+  resize: none;
+}
+
+/* The block's frame shows focus (see BlockFrame); a second ring around the bare text would only add noise. */
+textarea.paper:focus-visible {
+  outline: none;
+}
+
+/* Kept in the layout but faded, so nothing shifts when it appears. */
+.hint {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.text:focus-within .hint,
+.holder:has(textarea:placeholder-shown) + .hint {
+  opacity: 1;
+}

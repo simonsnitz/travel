@@ -1,0 +1,105 @@
+.video {
+  display: grid;
+  gap: 14px;
+  /* Keeps the tab switch at its natural width; everything else asks for the full width itself. */
+  justify-items: start;
+}
+
+.video > :global(.input),
+.stack {
+  width: 100%;
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Text buttons at touch size. Two classes, so this wins over .btn whatever order the stylesheets load in. */
+.video .word {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.875rem;
+}
+
+.clip {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: var(--radius-sm);
+  background: var(--text);
+}
+
+.unplayable {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.unplayable > svg {
+  flex: none;
+}
+
+.player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+
+/* YouTube Shorts are vertical; at full width one would fill the whole screen. */
+.tall {
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+}
+
+.player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.name {
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar {
+  flex: 1;
+}
+
+.percent {
+  min-width: 4ch;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.problem {
+  color: var(--danger);
+  font-size: 0.875rem;
+}

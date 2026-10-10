@@ -1,0 +1,56 @@
+.header {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacer {
+  width: 42px;
+}
+
+.title {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+}
+
+.date {
+  font-size: clamp(1.875rem, 7vw, 2.75rem);
+  text-wrap: balance;
+}
+
+/* The same saffron stroke that sits under the day's title on the public page. */
+.date::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin: 14px auto 0;
+  border-radius: 2px;
+  background: var(--highlight);
+}
+
+/* Tall enough for the link's touch target, so the row doesn't jump when the link comes and goes. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 12px;
+  min-height: 40px;
+}
+
+.view {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
