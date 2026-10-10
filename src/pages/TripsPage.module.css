@@ -1,0 +1,223 @@
+/* ── Masthead ───────────────────────────────────────────────────────────── */
+
+.masthead {
+  padding: 8px 0 40px;
+  text-align: center;
+}
+
+.masthead::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin: 26px auto 0;
+  border-radius: 2px;
+  background: var(--highlight);
+}
+
+.siteTitle {
+  font-size: clamp(2.25rem, 1.6rem + 3.2vw, 3.5rem);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.tagline {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  font-style: italic;
+  text-wrap: balance;
+}
+
+/* ── Tiles ──────────────────────────────────────────────────────────────── */
+
+.tile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  /* In a row of tiles of unequal height, the words take up the slack, not the photo. */
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  overflow: hidden;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.tile:hover {
+  color: var(--text);
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-sunken);
+}
+
+.cover picture {
+  display: contents;
+}
+
+/* Pinned to the edges, so the picture fills the box however its height was arrived at. */
+.cover img,
+.cover svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.cover img {
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .tile:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .tile:hover .cover img,
+  .tile:hover .cover svg {
+    transform: scale(1.03);
+  }
+}
+
+.body {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  padding: 18px 20px 22px;
+}
+
+.title {
+  font-size: 1.5rem;
+  overflow-wrap: break-word;
+}
+
+.dates {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+
+.pulse {
+  position: relative;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--highlight);
+}
+
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: pulse 2.2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse::after {
+    animation: none;
+  }
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  color: var(--accent);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.more svg {
+  transition: transform 0.2s;
+}
+
+@media (hover: hover) {
+  .tile:hover .more svg {
+    transform: translateX(3px);
+  }
+}
+
+/* ── The featured trip ──────────────────────────────────────────────────── */
+
+/* Two classes, so these win over .card whatever order the stylesheets load in. */
+.tile.featured {
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.featured .title {
+  font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem);
+}
+
+.featured .body {
+  padding: 22px 22px 26px;
+}
+
+@media (hover: hover) {
+  .tile.featured:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* Photo and words side by side once there is room for both. */
+@media (min-width: 760px) {
+  .featured {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  /* A box with an aspect ratio isn't stretched unless asked: without this, a
+     long title would leave a gap under the photo. */
+  .featured .cover {
+    align-self: stretch;
+    aspect-ratio: 16 / 10;
+  }
+
+  .featured .body {
+    align-content: center;
+    padding: 32px clamp(28px, 4vw, 48px);
+  }
+}
+
+/* ── Other trips ────────────────────────────────────────────────────────── */
+
+.moreLabel {
+  margin: 56px 0 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}

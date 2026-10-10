@@ -1,0 +1,142 @@
+/*
+ * Phones first: the list of days is a strip above the entry. From 800px it is
+ * a column on the left. TripSidebar.module.css switches at the same width.
+ */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.main {
+  min-width: 0;
+  padding: 28px max(20px, env(safe-area-inset-right)) 96px max(20px, env(safe-area-inset-left));
+}
+
+@media (min-width: 800px) {
+  .layout {
+    grid-template-columns: 264px minmax(0, 1fr);
+    align-items: start;
+    column-gap: clamp(32px, 4.5vw, 56px);
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+  }
+
+  .main {
+    padding: 40px 0 96px;
+  }
+}
+
+.edit {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+/* Tall enough that the links below don't jump up the page while a day loads. */
+.content {
+  min-height: 50vh;
+}
+
+.missing {
+  display: grid;
+  gap: 10px;
+  padding: 56px 0;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.missing h1 {
+  color: var(--text);
+  font-size: 1.75rem;
+}
+
+/* Only ever focused from script, as a place to start reading from. */
+.missing h1:focus-visible {
+  outline: none;
+}
+
+/* A trip with nothing published yet: just its name, its dates and a note. */
+.unwritten {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 96px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.unwritten h1 {
+  color: var(--text);
+  font-size: clamp(2rem, 1.5rem + 2.4vw, 2.75rem);
+}
+
+/* ── Previous and next day ──────────────────────────────────────────────── */
+
+.pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  /* As wide as the entry's photos; see --media-width in DayContent.module.css. */
+  max-width: calc(var(--prose-width) + 96px);
+  margin: 64px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  min-width: 0;
+  padding: 14px 16px 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.step:hover {
+  color: var(--text);
+}
+
+@media (hover: hover) {
+  .step:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* Stays on the right even when there is no previous day beside it. */
+.forward {
+  grid-column: 2;
+  justify-items: end;
+  text-align: right;
+}
+
+.stepLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stepDate {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stepPlace {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  overflow-wrap: break-word;
+}

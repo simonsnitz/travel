@@ -1,0 +1,267 @@
+.day {
+  /* Photos and videos may run this much wider than the column of text. */
+  --media-width: calc(var(--prose-width) + 96px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  row-gap: 30px;
+  width: 100%;
+  min-width: 0;
+  /* The layout follows the room the day is given, which in the editor's
+     preview is much less than the window. */
+  container-type: inline-size;
+}
+
+/* ── Heading ────────────────────────────────────────────────────────────── */
+
+.header {
+  width: 100%;
+  max-width: var(--prose-width);
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  font-size: clamp(1.875rem, 1.4rem + 2.4cqw, 2.75rem);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Only ever focused from script, as a place to start reading from. */
+.title:focus-visible {
+  outline: none;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 20px;
+  border-radius: 2px;
+  background: var(--highlight);
+}
+
+.dot {
+  color: var(--highlight);
+}
+
+/* ── Text ───────────────────────────────────────────────────────────────── */
+
+.prose {
+  width: 100%;
+  max-width: var(--prose-width);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-size: clamp(1.125rem, 1.02rem + 0.5cqw, 1.1875rem);
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prose p {
+  /* Keeps the line breaks typed inside a paragraph. */
+  white-space: pre-line;
+  text-wrap: pretty;
+}
+
+.prose p + p {
+  margin-top: 1.15em;
+}
+
+.empty,
+.link {
+  width: 100%;
+  max-width: var(--prose-width);
+}
+
+.empty {
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-style: italic;
+}
+
+.link {
+  overflow-wrap: anywhere;
+}
+
+/* ── Photos and videos ──────────────────────────────────────────────────── */
+
+.figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  row-gap: 10px;
+  width: 100%;
+  max-width: var(--media-width);
+}
+
+/* Pictures get a little more air around them than paragraphs do. */
+.figure,
+.grid {
+  margin: 6px 0;
+}
+
+/* A single photo keeps its own proportions. Its width is the smallest of the
+   column, the photo's real size, and whatever keeps its height on screen, and
+   it is known before the image loads, so nothing below it jumps. */
+.photo {
+  display: block;
+  position: relative;
+  width: min(100%, var(--natural-width), calc(85vh * (var(--ratio))));
+  aspect-ratio: var(--ratio);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  cursor: zoom-in;
+}
+
+/* Pinned to the edges of their box: a percentage height can't be relied on
+   inside a box whose own height comes from its aspect ratio. The same goes for
+   the player in .embed below. */
+.photo img,
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+  max-width: var(--media-width);
+}
+
+.cell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 6px;
+  min-width: 0;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  cursor: zoom-in;
+}
+
+.tile img {
+  transition: transform 0.5s ease;
+}
+
+@media (hover: hover) {
+  .tile:hover img {
+    transform: scale(1.04);
+  }
+}
+
+/* Two columns: with an odd number of photos, the first one takes a full row. */
+.lead {
+  grid-column: 1 / -1;
+}
+
+.lead .tile {
+  aspect-ratio: 3 / 2;
+}
+
+/* Three columns, on a six-track grid so that the leading photos of an uneven
+   set can take half a row each; see tileShape(). */
+@container (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .cell {
+    grid-column: span 2;
+  }
+
+  .cell .tile {
+    aspect-ratio: 1;
+  }
+
+  .half {
+    grid-column: span 3;
+  }
+
+  .half .tile {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.video,
+.embed {
+  width: min(100%, calc(80vh * (var(--ratio))));
+  aspect-ratio: var(--ratio);
+  border-radius: var(--radius);
+  background: var(--text);
+}
+
+.video {
+  height: auto;
+}
+
+.embed {
+  position: relative;
+  overflow: hidden;
+}
+
+/* A vertical player the full height of the screen would be all there is to see. */
+.vertical {
+  max-width: 400px;
+}
+
+.embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* The small viewport height leaves out a phone browser's retractable toolbars,
+   so a tall photo fits even while they are showing. */
+@supports (height: 1svh) {
+  .photo {
+    width: min(100%, var(--natural-width), calc(85svh * (var(--ratio))));
+  }
+
+  .video,
+  .embed {
+    width: min(100%, calc(80svh * (var(--ratio))));
+  }
+}
+
+.caption {
+  max-width: var(--prose-width);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.cell .caption {
+  padding: 0 2px;
+  font-size: 0.875rem;
+  text-align: left;
+}

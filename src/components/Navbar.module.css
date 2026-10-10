@@ -1,0 +1,191 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--nav-height);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* A little of the page shows through as it scrolls underneath. */
+@supports (background: color-mix(in srgb, red 50%, transparent)) and
+  ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .bar {
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    -webkit-backdrop-filter: saturate(1.3) blur(12px);
+    backdrop-filter: saturate(1.3) blur(12px);
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+}
+
+/* ── Home ───────────────────────────────────────────────────────────────── */
+
+.home {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 9px;
+  height: 40px;
+  /* The negative margin lines the icon up with the page's left edge. */
+  margin-left: -10px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+
+.home:hover {
+  background: var(--surface-sunken);
+  color: var(--text);
+}
+
+.homeIcon {
+  flex: none;
+  color: var(--accent);
+}
+
+/* The link keeps its name through aria-label when the text is hidden. */
+@media (max-width: 639.98px) {
+  .homeLabel {
+    display: none;
+  }
+}
+
+/* ── Directory trail ────────────────────────────────────────────────────── */
+
+.trail {
+  flex: 1 1 auto;
+  align-self: stretch;
+  min-width: 0;
+  /* Clips the trail in the rare case that even fully shortened crumbs don't
+     fit; the padding leaves room for the last crumb's focus ring. */
+  overflow: hidden;
+  padding-right: 6px;
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  /* Room for the slash and a letter or two in front of the ellipsis. */
+  min-width: 3em;
+  /* Earlier crumbs give up their room first. Their shrink factor is so much
+     larger that the current page only starts to shorten once they have all
+     reached their minimum width. */
+  flex: 0 1000000 auto;
+}
+
+.crumb:last-child {
+  flex-shrink: 1;
+}
+
+.slash {
+  flex: none;
+  padding: 0 7px;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+a.label:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.current,
+a.current:hover {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── Admin ──────────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.admin {
+  display: inline-flex;
+  align-items: center;
+  /* 40px keeps both controls comfortable to hit with a thumb. */
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.admin:hover {
+  background: var(--surface-sunken);
+  color: var(--text);
+}
+
+.actions .signOut {
+  min-height: 40px;
+}
+
+/* On phones the button is just its icon, which leaves the trail more room. */
+@media (max-width: 479.98px) {
+  .actions .signOut {
+    width: 40px;
+    padding: 0;
+  }
+
+  .signOutLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+.alert {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: max(12px, env(safe-area-inset-right));
+  max-width: min(360px, calc(100vw - 24px));
+  box-shadow: var(--shadow-md);
+}

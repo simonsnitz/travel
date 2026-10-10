@@ -1,0 +1,249 @@
+/*
+ * Phones first: the trip's name, then a strip of day chips that scrolls
+ * sideways. From 800px it becomes a column that stays beside the entry.
+ * TripPage.module.css switches its layout at the same width.
+ */
+
+.sidebar {
+  min-width: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  padding: 20px max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+}
+
+.trip {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+
+.dates {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.days {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 14px max(20px, env(safe-area-inset-right)) 16px max(20px, env(safe-area-inset-left));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  list-style: none;
+}
+
+.days > li {
+  flex: none;
+}
+
+.day {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 10px;
+  min-height: 48px;
+  padding: 6px 16px 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.day:hover {
+  color: var(--text);
+}
+
+@media (hover: hover) {
+  .day:hover {
+    background: var(--surface-sunken);
+  }
+}
+
+.day[aria-current] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.number {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.day[aria-current] .number {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.when {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.where {
+  max-width: 9.5rem;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+}
+
+/* Stands in for the list while it loads, or when it couldn't be loaded. */
+.note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 16px max(20px, env(safe-area-inset-right)) 20px max(20px, env(safe-area-inset-left));
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* The strip is swiped, so its scrollbar would only add clutter. */
+@media (max-width: 799.98px) {
+  .days {
+    scrollbar-width: none;
+  }
+
+  .days::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .sidebar {
+    position: sticky;
+    top: var(--nav-height);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - var(--nav-height));
+    padding-top: 40px;
+    border-bottom: 0;
+  }
+
+  .head {
+    display: block;
+    padding: 0 0 18px;
+  }
+
+  .trip {
+    font-size: 1.625rem;
+  }
+
+  .dates {
+    margin-top: 6px;
+  }
+
+  /* The list takes whatever height is left and scrolls by itself. */
+  .nav {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .days {
+    flex-direction: column;
+    gap: 0;
+    min-height: 0;
+    /* A scrolling box clips whatever pokes out of it. The padding gives the
+       rows' focus rings room, and the margin keeps the rows where they were. */
+    margin-left: -4px;
+    padding: 4px 8px 32px 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Unlike the strip, the column hands the wheel on to the page when it has
+       nothing left to scroll, which with a short list is straight away. */
+    overscroll-behavior: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+
+  .day {
+    min-height: 0;
+    padding: 8px 12px 8px 8px;
+    border-color: transparent;
+    border-radius: var(--radius);
+    background: transparent;
+    white-space: normal;
+  }
+
+  .day[aria-current] {
+    border-color: transparent;
+  }
+
+  /* A line through the day numbers, like stops along a route. Each row draws
+     its own stretch, so rows of any height join up; the first and the last
+     row stop at their number. */
+  .day::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: 22px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .days > li:first-child .day::before {
+    top: 50%;
+  }
+
+  .days > li:last-child .day::before {
+    bottom: 50%;
+  }
+
+  .when {
+    font-size: 0.9375rem;
+  }
+
+  .where {
+    max-width: none;
+    overflow: visible;
+    font-size: 0.8125rem;
+    overflow-wrap: break-word;
+  }
+
+  .note {
+    padding: 4px 0 0;
+  }
+}
+
+@supports (height: 1dvh) {
+  @media (min-width: 800px) {
+    .sidebar {
+      max-height: calc(100dvh - var(--nav-height));
+    }
+  }
+}

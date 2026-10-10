@@ -1,0 +1,247 @@
+/* Shown the moment it is rendered: the component opens the dialog right away,
+   so there is no closed state to hide. */
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--overlay);
+  color: var(--bg);
+  overscroll-behavior: contain;
+  /* Quick taps on the arrows shouldn't zoom the page. Pinching still does. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  animation: fade 0.18s ease-out;
+}
+
+.dialog::backdrop {
+  background: transparent;
+}
+
+/* ── Controls ───────────────────────────────────────────────────────────── */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 60px;
+  padding: max(8px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 8px
+    max(10px, env(safe-area-inset-left));
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.counter {
+  min-width: 4.25em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.control {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  transition:
+    background-color 0.15s,
+    opacity 0.15s;
+}
+
+/* Terracotta is hard to see on the dark overlay; saffron isn't. */
+.control:focus-visible {
+  outline-color: var(--highlight);
+}
+
+.control[aria-disabled='true'] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .control:not([aria-disabled='true']):hover {
+    background: color-mix(in srgb, var(--bg) 18%, transparent);
+  }
+}
+
+.close {
+  margin-left: auto;
+}
+
+/* ── Photo ──────────────────────────────────────────────────────────────── */
+
+.figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
+}
+
+.stage {
+  position: relative;
+  min-height: 0;
+  /* Lets the photo be sized from the room available; see .image. */
+  container-type: size;
+}
+
+/* Sits behind the photo and shows through until it has loaded. */
+.wait {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  /* One cell of exactly this size, for the photo's percentage limits to measure against. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  /* Glides back to the middle when a swipe is let go too early. */
+  transition: transform 0.22s ease-out;
+}
+
+.slide[data-dragging] {
+  transition: none;
+}
+
+.image {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: contain;
+  /* The small version of the photo, set inline, fills in while the full one loads. */
+  background: center / cover no-repeat;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Where supported, size the box from the photo's known proportions instead, so
+   it has its final shape (and can show the small version) before anything loads. */
+@supports (width: 1cqw) {
+  .image {
+    width: min(100cqw, calc(100cqh * (var(--ratio))), var(--natural-width));
+    max-width: none;
+    max-height: none;
+    aspect-ratio: var(--ratio);
+  }
+}
+
+.caption {
+  /* A very long caption is cut off after a few lines, so that it can't crowd
+     out the photo. The page shows it in full. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  justify-self: center;
+  max-width: min(720px, 100%);
+  margin-top: 12px;
+  padding: 0 20px;
+  overflow: hidden;
+  color: var(--surface-sunken);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: center;
+}
+
+/* With room to spare, the arrows move out of the bar to either side of the photo. */
+@media (min-width: 720px) {
+  .previous,
+  .next {
+    position: absolute;
+    top: calc(50% - 26px);
+    /* Above the photo's box, so a tap on an arrow can never land on the surround. */
+    z-index: 1;
+    width: 52px;
+    height: 52px;
+    background: color-mix(in srgb, var(--bg) 9%, transparent);
+  }
+
+  .previous {
+    left: max(16px, env(safe-area-inset-left));
+  }
+
+  .next {
+    right: max(16px, env(safe-area-inset-right));
+  }
+
+  .counter {
+    padding-left: 10px;
+    text-align: left;
+  }
+
+  /* An arrow's offset and width, plus a gap, on either side. */
+  .stage {
+    margin-right: calc(max(16px, env(safe-area-inset-right)) + 68px);
+    margin-left: calc(max(16px, env(safe-area-inset-left)) + 68px);
+  }
+}
+
+/* ── Motion ─────────────────────────────────────────────────────────────── */
+
+.appear {
+  animation: appear 0.2s ease-out;
+}
+
+.fromRight {
+  animation: from-right 0.24s ease-out;
+}
+
+.fromLeft {
+  animation: from-left 0.24s ease-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+}
