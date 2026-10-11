@@ -1,0 +1,66 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-08",
+  "location": "Doha, Qatar",
+  "published": true,
+  "blocks": [
+    {
+      "id": "7d244581-bc01-493c-b42b-ad4437b0ee9a",
+      "text": "The 12 hour flight went by surprisingly quickly. I landed in Doha at 5pm and got to my hotel by ~6pm. Hit Old Doha around 7:30pm. It was a gorgeous city with sandstone buildings fitted with warm accent lighting and a lot of outdoor seating. While the temperature hit a humid 100F during the day, by the evening it was in the high 80s, low 90s. It was so interesting seeing people dressed in the traditional clothing - full coverage Hijabs worn by women and Thawb robes & Ghutra headscarves worn by men.",
+      "type": "text"
+    },
+    {
+      "id": "72b2a967-b297-46a5-891f-c67a664ee8b7",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/15e94481-9a83-4910-906e-d6507f8f0120.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Old Doha",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/15e94481-9a83-4910-906e-d6507f8f0120_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "27f11c63-2033-48f2-b339-c77184d9e636",
+      "text": "I found my way to a busy kebab shop and got a chicken stew with rice (15 QAR, $4) and mutton and chicken kebabs (20 QAR, $5.50). The mutton was incredible. (Why don't we get that in the US? We only have lamb). I chatted with two Chinese travelers in their mid 30s who sat at my same table. They were architects who came to Qatar to see several buildings famous for their architectural style. I ended the night by getting some fresh Za'atar Chapati street food (3 QAR, ~$0.8).",
+      "type": "text"
+    },
+    {
+      "id": "ec2d9377-8a63-4089-9105-ad9609f562a4",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/b752620c-8521-4bdb-9dbc-2995002a4a26.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Chicken stew",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/b752620c-8521-4bdb-9dbc-2995002a4a26_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/f1ff6e96-e831-43be-bc2c-dc5c33faeeef.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Mutton & Chicken kebabs",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/f1ff6e96-e831-43be-bc2c-dc5c33faeeef_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/9ded7358-23fd-4e83-a670-01090ecaf8f6.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Street market",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/9ded7358-23fd-4e83-a670-01090ecaf8f6_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/16bbbfa6-7afa-49b7-b504-93d2d0e27838.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Za'atar Chapati",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-08/16bbbfa6-7afa-49b7-b504-93d2d0e27838_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-11T07:02:15.585968+00:00"
+}

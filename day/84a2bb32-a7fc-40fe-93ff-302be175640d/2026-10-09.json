@@ -1,0 +1,73 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-09",
+  "location": "Doha & Delhi",
+  "published": true,
+  "blocks": [
+    {
+      "id": "0cd299ec-d8c9-49f9-b7af-780c5a22495d",
+      "text": "Doha airport",
+      "type": "text"
+    },
+    {
+      "id": "c38d9528-8ab6-450a-8dcf-7bf0b930bf55",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/7d5034f4-7f20-4883-8df7-e891136e3703.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Doha airport",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/7d5034f4-7f20-4883-8df7-e891136e3703_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/eb882e8f-5a05-4518-89b0-3456795e5345.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Doha from airplane",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/eb882e8f-5a05-4518-89b0-3456795e5345_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "944679e7-96d3-46a2-8174-c814d7b7a6c6",
+      "text": "Night in Delhi",
+      "type": "text"
+    },
+    {
+      "id": "9df70a5e-450b-454d-baed-03c103d1c879",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/fa012d66-8d5f-4c8c-a68f-5fb5103aabc8.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Veg, non-veg",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/fa012d66-8d5f-4c8c-a68f-5fb5103aabc8_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/656e15c4-3fcb-4cd4-946c-98d1ec3cf2e9.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Bustling streets",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/656e15c4-3fcb-4cd4-946c-98d1ec3cf2e9_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/0800ea3a-a74a-41c4-810d-82352377beaa.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Butter chicken",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/0800ea3a-a74a-41c4-810d-82352377beaa_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "1f500ca4-e591-48a3-a030-76f3d7455dde",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-09/5985139c-aadd-4dc7-b40a-594c10366f6c.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Delhi chaos"
+    }
+  ],
+  "updatedAt": "2026-10-11T06:16:16.602943+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-11",
+  "location": "Delhi",
+  "published": true,
+  "blocks": [
+    {
+      "id": "3c71c26f-2cc4-4cc3-a6b3-bdaaeaa3698c",
+      "text": "Hit Connaught Place by 10am. Ongoing protests kept many of the shops closed, so I ended up at Tan Coffee where I caught up on these journal entries. Random locals are eager to keep me updated on the protests, and they all seem to ask the same questions: \"Where are you from? How long are you here for? Where are you going next?\". Friendly, but repetitive. This one guy, unprompted, told me what he did for a living: designing suits for Lockheed Martin. ... huh?",
+      "type": "text"
+    },
+    {
+      "id": "58144297-7b68-46d5-be52-709b49e04bc8",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/582922c6-57b3-4aed-a130-002c4dff64b2.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Tan Coffee",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/582922c6-57b3-4aed-a130-002c4dff64b2_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-11T07:06:19.788375+00:00"
+}

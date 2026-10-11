@@ -1,0 +1,27 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-07",
+  "location": "Boston",
+  "published": true,
+  "blocks": [
+    {
+      "id": "18d47ea0-d2bd-4c15-bd3f-2bd413fe13e9",
+      "text": "Arrived at the Boston airport at 8:15pm for my 10pm flight. Nervously waited ~45 minutes in line to check in and get my boarding pass, but fortunately the line for security took ~10 minutes. Note to self: arrive 3 hours before international flights to save your body a cortisol spike.",
+      "type": "text"
+    },
+    {
+      "id": "413d6f95-6b9f-47d9-b7f2-6a4d2554cdf7",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-07/b1940392-a9be-47fd-8d67-169e9ec9308a.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Check-in line.",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-07/b1940392-a9be-47fd-8d67-169e9ec9308a_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-11T06:28:51.227223+00:00"
+}

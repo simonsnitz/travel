@@ -6,7 +6,7 @@
   "blocks": [
     {
       "id": "e6db789e-b6a3-48a0-b8be-f548c70be93e",
-      "text": "Decided to detox from Delhi's chaos by going to a calm cafe in Cannaught, central New Delhi around 6:30am. On the way, the main street was closed by police and they wouldn't let me through. I thought they were asking for a bribe, but I later found out that there was a big protest planned and the gov literally shut down the whole downtown Delhi area where the protest would be. I managed to make my way through and fortunately one cafe, Blue Tokai, was still open. Calm at last :)",
+      "text": "Decided to detox from Delhi's chaos by going to a calm cafe in Connaught, central New Delhi around 6:30am. On the way, the main street was closed by police and they wouldn't let me through. I thought they were asking for a bribe, but I later found out that there was a big protest planned and the gov literally shut down the whole downtown Delhi area where the protest would be. I managed to make my way through and fortunately one cafe, Blue Tokai, was still open. Calm at last :)",
       "type": "text"
     },
     {
@@ -31,7 +31,7 @@
     },
     {
       "id": "29493dd8-ebc4-47d9-87cb-71da790b2498",
-      "text": "After returning to the hostel, I joined a walking tour at 10am hosted by one of the hostel's employees, Zubin. I was the only one who joined. The tour lasted ~5 hours, and 95% of that time Zubin was speaking (he was very chatty!). We went through Old Delhi, partially by tiny Tuk-tuks (also called Rickshaws). Zubin was pretty critical of the religious beliefs in India (mostly Hinduism) and pointed out shrines around Banyan and Fig trees dedicated to specific gods. \n\nWe passed by the bustling street markets, with various clay pots, food vendors, textiles, electronics, and spice shops. Zubin said that a lot of products sold in these markets were imported from China these days. Cows that no longer produced milks were lying in the streets. We also stopped by a Mosque (where you have to take off your shoes before entering) and a Sikh temple where people would bath and drink the same water others would clean their feet in. We then stopped by a mall to get food (I prefer street food), and ended the tour at the 17th century Red Fort. Out of the blue, a peaceful protest emerged by the Red Fort, which was prompty shut down by the police (sadly, no free speech in India).",
+      "text": "After returning to the hostel, I joined a walking tour at 10am hosted by one of the hostel's employees, Zubin. I was the only one who joined. The tour lasted ~5 hours, and 95% of that time Zubin was speaking (he was very chatty!). We went through Old Delhi, partially by tiny Tuk-tuks (also called Rickshaws). Zubin was pretty critical of the religious beliefs in India (mostly Hinduism) and pointed out shrines around Banyan and Fig trees dedicated to specific gods. \n\nWe passed by the bustling street markets, with various clay pots, food vendors, textiles, electronics, and spice shops. Zubin said that a lot of products sold in these markets were imported from China these days. Cows that no longer produced milk were lying in the streets. We also stopped by a Mosque (where you have to take off your shoes before entering) and a Sikh temple where people would bath & drink the same water others would clean their feet in. We then stopped by a mall to get food (I prefer street food), and ended the tour at the 17th century Red Fort. Out of the blue, a peaceful protest emerged by the Red Fort, which was promptly shut down by the police (sadly, no free speech in India).",
       "type": "text"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "id": "f8aaf5b4-ca0f-4542-9c22-161be503030d",
-      "text": "In the evening I tried street food for the first time.\nFirst up was a crispy dosa filled with spiced potatoes costing 110 rupees (~$1.15). Best dosa I've had, but I'm curious how it stacks to south indian dosa. Afterwards I had a Kathi roll filled with an egg and tandoori chicken (100 rupees). The egg was both crispy and fluffy, similar to what I remember from Thailand. While waiting in line, I spoke with a friendly guy from Bangladesh who asked me about my life (where I'm from, how long I'm here for, where I'm going, etc.). He said that he's been in Delhi for 21 days while he waits for his visa. As India's capital, Delhi seems to be a hub for people from neighboring countries looking for jobs (and visas I guess).",
+      "text": "In the evening I tried street food for the first time. First up was a crispy dosa filled with spiced potatoes costing 110 rupees (~$1.15). Best dosa I've had, but I'm curious how it stacks to south Indian dosa. Afterwards I had a Kathi roll filled with an egg and tandoori chicken (100 rupees). The egg was both crispy and fluffy, similar to what I remember from Thailand. While waiting in line, I spoke with a friendly guy from Bangladesh who asked me about my life (where I'm from, how long I'm here for, where I'm going, etc.). He said that he's been in Delhi for 21 days while he waits for his visa. As India's capital, Delhi seems to be a hub for people from neighboring countries looking for jobs (and visas I guess). I also witnessed a  truck stacked with speakers blaring extremely loud music with dudes dancing behind it, likely for the upcoming festive season?",
       "type": "text"
     },
     {
@@ -92,7 +92,14 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/d0519bbd-5fb8-4e9e-ad90-6382b0538f80_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "db487612-17e5-4b96-a73c-12ec0457e571",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/d455566e-2407-4ab5-b518-39b89c74bb25.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Street party"
     }
   ],
-  "updatedAt": "2026-10-11T05:55:34.134303+00:00"
+  "updatedAt": "2026-10-11T07:05:11.677276+00:00"
 }
