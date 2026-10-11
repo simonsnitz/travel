@@ -28,7 +28,71 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/ca1879ee-30d5-42f9-83e7-acee4eb06af3_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "29493dd8-ebc4-47d9-87cb-71da790b2498",
+      "text": "After returning to the hostel, I joined a walking tour at 10am hosted by one of the hostel's employees, Zubin. I was the only one who joined. The tour lasted ~5 hours, and 95% of that time Zubin was speaking (he was very chatty!). We went through Old Delhi, partially by tiny Tuk-tuks (also called Rickshaws). Zubin was pretty critical of the religious beliefs in India (mostly Hinduism) and pointed out shrines around Banyan and Fig trees dedicated to specific gods. \n\nWe passed by the bustling street markets, with various clay pots, food vendors, textiles, electronics, and spice shops. Zubin said that a lot of products sold in these markets were imported from China these days. Cows that no longer produced milks were lying in the streets. We also stopped by a Mosque (where you have to take off your shoes before entering) and a Sikh temple where people would bath and drink the same water others would clean their feet in. We then stopped by a mall to get food (I prefer street food), and ended the tour at the 17th century Red Fort. Out of the blue, a peaceful protest emerged by the Red Fort, which was prompty shut down by the police (sadly, no free speech in India).",
+      "type": "text"
+    },
+    {
+      "id": "e7ec13be-3ab0-45e1-8b5d-fd923270ab56",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/c141336e-e89a-4f31-a0b2-8417f2bcae04.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Spice market",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/c141336e-e89a-4f31-a0b2-8417f2bcae04_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/1201f48f-55cd-446e-8599-7fceddb804d0.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Retired cows",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/1201f48f-55cd-446e-8599-7fceddb804d0_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/8117b5e0-d7c7-418e-9948-bdd6008302d9.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Sikh temple",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/8117b5e0-d7c7-418e-9948-bdd6008302d9_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/62e165f9-7f28-472c-8848-a9fd2eb5d31b.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Red fort",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/62e165f9-7f28-472c-8848-a9fd2eb5d31b_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "f8aaf5b4-ca0f-4542-9c22-161be503030d",
+      "text": "In the evening I tried street food for the first time.\nFirst up was a crispy dosa filled with spiced potatoes costing 110 rupees (~$1.15). Best dosa I've had, but I'm curious how it stacks to south indian dosa. Afterwards I had a Kathi roll filled with an egg and tandoori chicken (100 rupees). The egg was both crispy and fluffy, similar to what I remember from Thailand. While waiting in line, I spoke with a friendly guy from Bangladesh who asked me about my life (where I'm from, how long I'm here for, where I'm going, etc.). He said that he's been in Delhi for 21 days while he waits for his visa. As India's capital, Delhi seems to be a hub for people from neighboring countries looking for jobs (and visas I guess).",
+      "type": "text"
+    },
+    {
+      "id": "9d3ed726-3166-4dd9-9cd7-a923670cb063",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/0d115b13-d7af-4ef5-950f-7c91860a9ce5.jpg",
+          "width": 1600,
+          "height": 739,
+          "caption": "Masala dosa",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/0d115b13-d7af-4ef5-950f-7c91860a9ce5_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/d0519bbd-5fb8-4e9e-ad90-6382b0538f80.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Kathi roll",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/d0519bbd-5fb8-4e9e-ad90-6382b0538f80_thumb.jpg"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T03:29:57.861306+00:00"
+  "updatedAt": "2026-10-11T05:55:34.134303+00:00"
 }
