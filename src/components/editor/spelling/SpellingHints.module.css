@@ -1,0 +1,56 @@
+.spelling {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--highlight-soft);
+}
+
+.heading {
+  color: var(--highlight-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.issue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+/* The flagged word, underlined the way a spell checker would mark it in the text. */
+.word {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  text-decoration: underline wavy var(--danger);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.fixes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* A little taller than a small button elsewhere: these are tapped with a thumb, mid-sentence. */
+.fix {
+  min-height: 38px;
+}

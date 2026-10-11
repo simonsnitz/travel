@@ -1,5 +1,8 @@
-import { memo, useId, useLayoutEffect, useRef } from 'react'
+import { memo, useId, useLayoutEffect, useRef, useState } from 'react'
 import type { TextBlock } from '../../lib/types'
+import SpellingHints from './spelling/SpellingHints'
+import { useSpelling } from './spelling/useSpelling'
+import { findWord } from './spelling/words'
 import styles from './TextBlockEditor.module.css'
 
 interface TextBlockEditorProps {
@@ -25,6 +28,17 @@ function fitToContent(textarea: HTMLTextAreaElement) {
 function TextBlockEditor({ block, autoFocus, onChange }: TextBlockEditorProps) {
   const textarea = useRef<HTMLTextAreaElement>(null)
   const hintId = useId()
+  // Spelling is checked from the moment the writer first goes into the paragraph or changes it.
+  const [entered, setEntered] = useState(false)
+  const { issues, checked } = useSpelling(block.text, entered)
+
+  /** Selects a flagged word in the text, which also scrolls it into view. */
+  const locate = (word: string) => {
+    const range = findWord(block.text, word)
+    if (!range || !textarea.current) return
+    textarea.current.focus()
+    textarea.current.setSelectionRange(range.start, range.end)
+  }
 
   useLayoutEffect(() => {
     if (textarea.current) fitToContent(textarea.current)
@@ -73,12 +87,24 @@ function TextBlockEditor({ block, autoFocus, onChange }: TextBlockEditorProps) {
           aria-label="Text"
           aria-describedby={hintId}
           autoFocus={autoFocus}
-          onChange={(event) => onChange(block.id, event.target.value)}
+          // These ask the browser and the phone's keyboard for their own help as well:
+          // underlined misspellings, capitals at the start of a sentence, autocorrect.
+          lang="en"
+          spellCheck
+          autoCapitalize="sentences"
+          autoCorrect="on"
+          onFocus={() => setEntered(true)}
+          onChange={(event) => {
+            setEntered(true)
+            onChange(block.id, event.target.value)
+          }}
         />
       </div>
       <p id={hintId} className={`hint ${styles.hint}`}>
         Leave a blank line to start a new paragraph.
+        {checked && issues.length === 0 && block.text.trim() !== '' && ' No spelling mistakes found.'}
       </p>
+      <SpellingHints text={block.text} issues={issues} onChange={(text) => onChange(block.id, text)} onLocate={locate} />
     </div>
   )
 }

@@ -10,6 +10,8 @@ import { snapshotOf } from './blocks'
 import DayHeader from './DayHeader'
 import { blurOnEnter } from './keys'
 import Segmented from './Segmented'
+import { SpellingContext } from './spelling/useSpelling'
+import { distinctWords } from './spelling/words'
 import { useDayEditor } from './useDayEditor'
 import styles from './DayEditor.module.css'
 
@@ -49,6 +51,12 @@ export default function DayEditor({ trip, date, day }: DayEditorProps) {
     [view, state.location, state.blocks],
   )
 
+  // The place the day was spent, and the trip's name, are never spelling mistakes in its paragraphs.
+  const placeNames = useMemo(
+    () => new Set(distinctWords(`${trip.title} ${state.location}`).map((word) => word.toLowerCase())),
+    [trip.title, state.location],
+  )
+
   // The crumbs and the browser's back button can't be intercepted (the local
   // backup covers those), but the editor's own links away from the day can ask first.
   const confirmLeave = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -61,78 +69,80 @@ export default function DayEditor({ trip, date, day }: DayEditorProps) {
   }
 
   return (
-    <div className={styles.editor}>
-      <DayHeader
-        trip={trip}
-        date={date}
-        state={!exists ? 'new' : state.published ? 'published' : 'draft'}
-        viewHref={state.published && !dirty && !locked ? `/${trip.slug}/${date}` : null}
-        onLeave={confirmLeave}
-      />
+    <SpellingContext.Provider value={placeNames}>
+      <div className={styles.editor}>
+        <DayHeader
+          trip={trip}
+          date={date}
+          state={!exists ? 'new' : state.published ? 'published' : 'draft'}
+          viewHref={state.published && !dirty && !locked ? `/${trip.slug}/${date}` : null}
+          onLeave={confirmLeave}
+        />
 
-      {pendingBackup && (
-        <BackupBanner editedAt={pendingBackup.editedAt} onRestore={editor.restoreBackup} onDiscard={editor.discardBackup} />
-      )}
+        {pendingBackup && (
+          <BackupBanner editedAt={pendingBackup.editedAt} onRestore={editor.restoreBackup} onDiscard={editor.discardBackup} />
+        )}
 
-      <div className={frozen ? `${styles.sheet} ${styles.frozen}` : styles.sheet} inert={frozen}>
-        <div className={styles.switch}>
-          <Segmented<View> label="Edit or preview" name="day-view" value={view} options={VIEWS} onChange={setView} />
-        </div>
-
-        {preview ? (
-          <div className={styles.preview}>
-            <p className="hint">This is how the day will look on the site.</p>
-            <DayContent
-              tripStart={trip.startDate}
-              day={{ date, location: preview.location, blocks: preview.blocks }}
-              // The editor shows what is in the database, never the backup copy.
-              mediaUrl={store.mediaUrl}
-            />
+        <div className={frozen ? `${styles.sheet} ${styles.frozen}` : styles.sheet} inert={frozen}>
+          <div className={styles.switch}>
+            <Segmented<View> label="Edit or preview" name="day-view" value={view} options={VIEWS} onChange={setView} />
           </div>
-        ) : (
-          <>
-            <div className={styles.location}>
-              <MapPin size={18} />
-              <label className="visually-hidden" htmlFor={locationId}>
-                Location
-              </label>
-              <input
-                id={locationId}
-                className={`input ${styles.place}`}
-                type="text"
-                value={state.location}
-                placeholder="Where were you?"
-                autoComplete="off"
-                enterKeyHint="done"
-                onKeyDown={blurOnEnter}
-                onChange={(event) => editor.setLocation(event.target.value)}
+
+          {preview ? (
+            <div className={styles.preview}>
+              <p className="hint">This is how the day will look on the site.</p>
+              <DayContent
+                tripStart={trip.startDate}
+                day={{ date, location: preview.location, blocks: preview.blocks }}
+                // The editor shows what is in the database, never the backup copy.
+                mediaUrl={store.mediaUrl}
               />
             </div>
-
-            <BlockList blocks={state.blocks} uploads={state.uploads} actions={actions} />
-
-            {exists && (
-              <div className={styles.danger}>
-                <button type="button" className={`btn btn-danger ${styles.delete}`} disabled={saving} onClick={editor.deleteDay}>
-                  <Trash2 size={16} />
-                  Delete day
-                </button>
+          ) : (
+            <>
+              <div className={styles.location}>
+                <MapPin size={18} />
+                <label className="visually-hidden" htmlFor={locationId}>
+                  Location
+                </label>
+                <input
+                  id={locationId}
+                  className={`input ${styles.place}`}
+                  type="text"
+                  value={state.location}
+                  placeholder="Where were you?"
+                  autoComplete="off"
+                  enterKeyHint="done"
+                  onKeyDown={blurOnEnter}
+                  onChange={(event) => editor.setLocation(event.target.value)}
+                />
               </div>
-            )}
-          </>
-        )}
-      </div>
 
-      <ActionBar
-        status={state.status}
-        dirty={dirty}
-        uploading={uploading}
-        exists={exists}
-        published={state.published}
-        locked={locked}
-        onSave={editor.save}
-        onRetry={editor.retry}
-      />
-    </div>
+              <BlockList blocks={state.blocks} uploads={state.uploads} actions={actions} />
+
+              {exists && (
+                <div className={styles.danger}>
+                  <button type="button" className={`btn btn-danger ${styles.delete}`} disabled={saving} onClick={editor.deleteDay}>
+                    <Trash2 size={16} />
+                    Delete day
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        <ActionBar
+          status={state.status}
+          dirty={dirty}
+          uploading={uploading}
+          exists={exists}
+          published={state.published}
+          locked={locked}
+          onSave={editor.save}
+          onRetry={editor.retry}
+        />
+      </div>
+    </SpellingContext.Provider>
   )
 }
