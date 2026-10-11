@@ -9,6 +9,7 @@ Live at <https://simonsnitz.github.io/travel/>. The editor is at <https://simons
 - **The site** is React and TypeScript, built with Vite and hosted on GitHub Pages.
 - **The content** lives in a Supabase project on the free plan: a Postgres database for trips and days, Storage for photos and clips, and Auth for your one login.
 - **The pages never talk to Supabase directly.** They go through `src/lib/store.ts`, which uses Supabase when it is configured and an in-memory demo with sample content when it is not.
+- **A backup copy of everything published is kept with the site itself**, so readers can still see it when the database can't be reached. See [The backup copy](#the-backup-copy).
 - **Who may do what is decided in the database**, by the rules in `supabase/schema.sql`. Visitors can read trips and published days. Only the login on the admin list can write, see drafts, or upload. The key that ships with the site is the publishable one, which is public by design.
 
 Everything runs on free tiers. The limits that come with that are listed [below](#free-plan-limits).
@@ -57,7 +58,7 @@ Do these in order. The order matters for step 5: your project's address should n
 
 ## Deploying
 
-Push to `main`. GitHub Actions runs the tests, builds the site and publishes it to Pages. It takes a couple of minutes, and you can watch it under the Actions tab.
+Push to `main`. GitHub Actions runs the tests, builds the site and publishes it to Pages. It takes a couple of minutes, and you can watch it under the Actions tab. The same workflow also runs by itself once a day to refresh the backup copy.
 
 The workflow refuses to publish if `.env.production` is missing or incomplete, because the build would then be the demo site. It also refuses if the key in it looks like a secret key.
 
@@ -77,27 +78,32 @@ You only need to deploy when the code changes. Writing and publishing days happe
 | **1 GB of storage** in total | Photos are shrunk in your browser before they are uploaded: at most 2000 pixels on the long side, saved as JPEG, plus a small thumbnail. Redrawing the photo also strips its embedded data, such as where it was taken. |
 | **50 MB per file** | A clip over 50 MB is refused before the upload starts, with a message saying so. Clips are uploaded in pieces that are retried when the connection drops. |
 | Longer videos | Put the video on YouTube or Vimeo and paste the link into a video block. It plays on the page and uses none of your storage. |
-| **Supabase pauses a free project** that has seen little activity for about a week | A scheduled job (`.github/workflows/keep-alive.yml`) reads from the database once a day. |
-| **GitHub switches off scheduled jobs** in a repository with no activity for 60 days | See below. |
+| **Supabase pauses a free project** that has seen little activity for about a week | Readers are not affected: the site serves them [the backup copy](#the-backup-copy). The daily backup run also reads the database, which is normally enough to keep the project awake. |
 
-### Keeping the keep-alive alive
+### The backup copy
 
-GitHub stops running scheduled jobs in a public repository after 60 days without activity, and that includes the job that keeps Supabase awake. GitHub treats automatic workarounds for this as a breach of its terms, so the job warns you instead: once 45 days have passed since the last commit, it fails every Monday, and GitHub emails you about the failed run (unless you have turned those emails off).
+The content lives in Supabase, and the free plan pauses a quiet project. So that readers are never left with an error page, the site keeps its own copy of everything that is published.
 
-When that happens, do either of these:
+- **What it is.** Plain files holding every trip, published day, photo and clip. They live on the `snapshot` branch of this repository and are published beside the site, under `snapshot/`. Drafts are never copied.
+- **How readers get it.** The pages ask the database first, so readers normally see what you published a moment ago. If the database can't be reached, the pages switch to the copy by themselves and show a short note saying it is a saved copy. They quietly try the database again every few minutes.
+- **When it is updated.** Once a day (the Deploy workflow, `.github/workflows/deploy.yml`). A day with nothing new takes a few seconds and changes nothing. To change how often, edit the `cron` line in that file; to update it right now, open Actions > Deploy and choose Run workflow.
+- **What the admin page tells you.** The front page of the editor says whether the copy is up to date.
 
-- Push any change to the repository. That restarts the 60 days.
-- Or, if the job has already been switched off: Actions > Keep Supabase awake > Enable workflow.
+Two things to know:
 
-If the project does get paused, nothing is lost. Supabase emails a warning beforehand, and you can resume the project from its dashboard. Do it reasonably soon: a paused project can only be resumed for a limited time. While it is paused the site cannot load any content.
+- **GitHub stops scheduled runs after 60 days without activity in the repository.** Nothing breaks when that happens: readers keep getting the site and the last copy. But new entries are no longer copied, and with nothing reading the database daily Supabase may pause the project. The editor's front page warns you when the schedule is off. To switch it back on: Actions > Deploy > Enable workflow.
+- **If Supabase pauses the project,** readers still see the copy, but you can't sign in or edit until you resume the project from the Supabase dashboard. Supabase emails a warning beforehand. A paused project can be restored for a limited time (a year at the time of writing), so don't leave it paused indefinitely if you plan to write again.
+
+The backup protects itself: if the database ever comes back empty while the copy has content, the copy is left untouched and the workflow run fails, so that you hear about it.
 
 ### Deleting things
 
-Deleting a day or a trip also deletes its photos and clips from storage. They are public files that browsers are told to keep for a year, so a copy can linger in caches for a while after you delete it. Treat anything you have published as already seen.
+Deleting a day or a trip also deletes its photos and clips from storage, and the next daily run removes them from the backup copy. They are public files that browsers are told to keep for a year, so a copy can linger in caches for a while after you delete it, and the history of the `snapshot` branch keeps earlier versions. Treat anything you have published as already seen.
 
 ## If something goes wrong
 
 - **"This account doesn't have permission to edit."** The login is not on the admin list. Run `supabase/schema.sql` again and read the `admin_email` and `what_next` it reports.
 - **"The site's database isn't set up yet."** `supabase/schema.sql` has not been run on the project that `.env.production` points to.
-- **"Couldn't reach the server"** on every page, with a working connection: the Supabase project has probably been paused. Resume it from the Supabase dashboard.
+- **"Couldn't reach the server"** when you sign in, with a working connection, or a note on the site saying readers are seeing a saved copy: the Supabase project has probably been paused. Resume it from the Supabase dashboard.
+- **The Deploy run fails at "backup-refused".** The database returned nothing while the backup copy has content, so the copy was left alone. Check the Supabase project. If you really did delete everything, run the workflow by hand with `allow_empty` ticked.
 - **The deploy fails at "Configure Pages".** Step 6 above has not been done.

@@ -10,3 +10,6 @@ export const THUMB_MAX_EDGE = 720
 
 /** Trip slugs that would collide with app routes. */
 export const RESERVED_SLUGS = ['admin']
+
+/** The GitHub repository the site is published from, as "owner/name". The admin page uses it to check on the daily backup. */
+export const GITHUB_REPO = 'simonsnitz/travel'

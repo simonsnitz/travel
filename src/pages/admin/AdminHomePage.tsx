@@ -1,5 +1,6 @@
 import { Eye, Mountain, PenLine, Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import BackupStatus from '../../components/admin/BackupStatus'
 import RetryBanner from '../../components/admin/RetryBanner'
 import TodayLink from '../../components/admin/TodayLink'
 import { useCrumbs } from '../../lib/crumbs'
@@ -45,6 +46,8 @@ export default function AdminHomePage() {
           ))}
         </ul>
       )}
+
+      <BackupStatus />
     </div>
   )
 }

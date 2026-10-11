@@ -1,4 +1,28 @@
-# Builds the site and publishes it to GitHub Pages whenever main changes.
+# Publishes the site to GitHub Pages, together with a backup copy of everything
+# that is published.
+#
+# The backup copy
+#
+# The site's content lives in a Supabase database on the free plan, which pauses
+# a project that has been quiet for a week. So that readers can never be left
+# with an error page, the "backup" job copies every trip, published day, photo
+# and clip into plain files on the "snapshot" branch, and the "build" job
+# publishes those files beside the site. The pages read the database first and
+# fall back to the copy on their own when the database can't be reached
+# (src/lib/reader.ts).
+#
+# When it runs
+#
+#   - on every push to main, to publish a change to the site's code
+#   - once a day, to pick up what was written in the editor. A day with nothing
+#     new takes a few seconds and publishes nothing. Reading the database daily
+#     is also what keeps Supabase from seeing the project as idle
+#   - by hand, from the Actions tab ("Run workflow")
+#
+# GitHub stops scheduled runs in a repository that has had no activity for 60
+# days. Nothing breaks when that happens: readers keep getting the site and the
+# last copy. New entries are not copied until the schedule is switched back on
+# (Actions > Deploy > Enable workflow), and the admin page says so when it is off.
 #
 # One-time setup in the repository: Settings > Pages > Build and deployment >
 # Source: "GitHub Actions". Until that is chosen, the "Configure Pages" step fails.
@@ -7,26 +31,45 @@ name: Deploy
 on:
   push:
     branches: [main]
-  # Adds a "Run workflow" button in the Actions tab, to republish without a commit.
+  schedule:
+    # Every day at 05:23 UTC. An odd minute on purpose: runs scheduled on the
+    # hour are the ones GitHub delays or drops when it is busy.
+    - cron: '23 5 * * *'
   workflow_dispatch:
+    inputs:
+      allow_empty:
+        description: Let the backup copy be emptied (only if everything really was deleted)
+        type: boolean
+        default: false
 
-# What this workflow's token may do: read the code and publish to Pages. Nothing else.
+# Each job below asks for what it needs on top of this. Nothing gets more.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# Deployments run one at a time. A newer push waits for the one in progress to
-# finish rather than cancelling it half-way through publishing.
+# Runs happen one at a time. A newer one waits for the one in progress to finish
+# rather than cancelling it half-way through publishing.
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  # Brings the backup copy on the "snapshot" branch up to date with the database.
+  #
+  # This is the only job allowed to write to the repository, and on purpose it
+  # installs nothing: it runs the two official actions and one script that uses
+  # only what ships with Node.
+  backup:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.save.outputs.changed }}
+      refused: ${{ steps.copy.outputs.refused }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       # Without these two values the build still succeeds, but it produces the demo
       # site with sample content. This step is what stops that from ever replacing
@@ -71,6 +114,73 @@ jobs:
           fi
           echo "The build will use the Supabase project at $url"
 
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Fetch the backup copy as it stands
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads "$remote" snapshot >/dev/null 2>&1; then
+            # Only the newest state is needed, not the history of every photo ever added.
+            git clone --quiet --depth 1 --branch snapshot "$remote" backup
+          else
+            echo "There is no backup copy yet. Starting one."
+            git init --quiet --initial-branch=snapshot backup
+            git -C backup remote add origin "$remote"
+          fi
+
+      - name: Copy what is published
+        id: copy
+        env:
+          ALLOW_EMPTY: ${{ inputs.allow_empty }}
+        run: |
+          flags=""
+          if [ "$ALLOW_EMPTY" = "true" ]; then flags="--allow-empty"; fi
+          code=0
+          node scripts/snapshot.mjs backup $flags || code=$?
+          case "$code" in
+            0) echo "saved=true" >> "$GITHUB_OUTPUT" ;;
+            # The project is paused or the connection failed. The copy on the branch
+            # is still good, so this is not a failure, and the site can go out as it is.
+            2) echo "::warning::The database could not be reached, so the backup copy was left as it is." ;;
+            # Reported by the "backup-refused" job below, so that publishing is not held up.
+            3) echo "refused=true" >> "$GITHUB_OUTPUT" ;;
+            *) exit "$code" ;;
+          esac
+
+      - name: Save the backup copy
+        id: save
+        if: steps.copy.outputs.saved == 'true'
+        run: |
+          cd backup
+          git add --all
+          if git diff --cached --quiet; then
+            echo "Nothing new to back up."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit --quiet --message "Update the backup copy"
+          git push --quiet origin snapshot
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: backup
+    # A daily run only publishes when the backup copy changed. Every other run
+    # (a push, or a run started by hand) publishes regardless.
+    if: github.event_name != 'schedule' || needs.backup.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # "Configure Pages" looks up the site's address.
+      pages: read
+    steps:
+      - uses: actions/checkout@v7
+
       # Placed before the build so that a repository where Pages has not been switched
       # on yet (see the top of this file) fails in seconds rather than after the build.
       - name: Configure Pages
@@ -84,6 +194,16 @@ jobs:
       - run: npm test
       - run: npm run build
 
+      - name: Put the backup copy beside the site
+        run: |
+          if git ls-remote --exit-code --heads origin snapshot >/dev/null 2>&1; then
+            git clone --quiet --depth 1 --branch snapshot "https://github.com/${GITHUB_REPOSITORY}.git" dist/snapshot
+            rm -rf dist/snapshot/.git
+            echo "The site will be published with $(find dist/snapshot -type f | wc -l | tr -d ' ') backup files."
+          else
+            echo "::notice::There is no backup copy yet, so the site is published without one."
+          fi
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
@@ -91,9 +211,24 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Turns the run red (which makes GitHub send an email) when the backup job
+  # declined to overwrite a copy that has content with an empty one. It is a job
+  # of its own so that the site itself is still published.
+  backup-refused:
+    needs: backup
+    if: needs.backup.outputs.refused == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::error::The database returned no trips or no published days, but the backup copy has some, so the copy was left untouched. If everything really was deleted, run this workflow by hand with 'allow_empty' ticked. Otherwise check the Supabase project."
+          exit 1
