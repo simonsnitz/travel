@@ -551,5 +551,22 @@ export function createSupabaseStore(url: string, key: string): Store {
       await requireAdmin()
       await removeFiles(paths)
     },
+    async storageUsage() {
+      await requireAdmin()
+      let bytes = 0
+      let files = 0
+      let cursor: string | undefined
+      do {
+        // One flat listing of everything in the bucket, a page at a time. Only an admin is shown any files.
+        const { data, error } = await bucket.listV2({ limit: 1000, cursor })
+        if (error) throw toError(error, "Couldn't work out how much storage is used.")
+        for (const file of data.objects) {
+          bytes += Number(file.metadata?.size) || 0
+          files++
+        }
+        cursor = data.hasNext ? data.nextCursor : undefined
+      } while (cursor)
+      return { bytes, files }
+    },
   }
 }

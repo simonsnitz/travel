@@ -1,4 +1,12 @@
-import { MAX_VIDEO_BYTES, PHOTO_MAX_EDGE, THUMB_MAX_EDGE } from '../config'
+import {
+  MAX_VIDEO_BYTES,
+  PHOTO_MAX_BYTES,
+  PHOTO_MAX_EDGE,
+  PHOTO_QUALITY,
+  THUMB_MAX_BYTES,
+  THUMB_MAX_EDGE,
+  THUMB_QUALITY,
+} from '../config'
 import type { ISODate } from './types'
 
 /** Storage folder for a day's media, or for a trip's cover when `date` is omitted. */
@@ -34,11 +42,43 @@ export interface ProcessedPhoto {
 export async function processPhoto(file: File): Promise<ProcessedPhoto> {
   const { source, release } = await decodeImage(file)
   try {
-    const full = await renderJpeg(source, PHOTO_MAX_EDGE, 0.82)
-    const thumb = await renderJpeg(source, THUMB_MAX_EDGE, 0.78)
+    const render = (maxEdge: number, quality: number) => renderJpeg(source, maxEdge, quality)
+    const full = await fitToBudget(render, PHOTO_MAX_EDGE, PHOTO_QUALITY, PHOTO_MAX_BYTES)
+    const thumb = await fitToBudget(render, THUMB_MAX_EDGE, THUMB_QUALITY, THUMB_MAX_BYTES)
     return { full: full.blob, thumb: thumb.blob, width: full.width, height: full.height }
   } finally {
     release()
+  }
+}
+
+const LOWEST_QUALITY = 0.5
+const QUALITY_STEP = 0.08
+const SMALLEST_EDGE = 480
+const EDGE_STEP = 0.85
+
+/**
+ * Encodes at the wanted size and quality and, if the file comes out over
+ * `maxBytes`, tries again with less until it fits. Quality gives way first,
+ * because it costs less visible detail than pixels do; only then does the
+ * picture itself get smaller. Nearly every photo fits at the first attempt.
+ * The loop is for the rare one that is all fine detail (foliage, gravel, a
+ * crowd), which can come out several times the usual size.
+ */
+export async function fitToBudget<Encoded extends { blob: { size: number } }>(
+  encode: (maxEdge: number, quality: number) => Promise<Encoded>,
+  maxEdge: number,
+  quality: number,
+  maxBytes: number,
+): Promise<Encoded> {
+  let edge = maxEdge
+  let level = quality
+  for (;;) {
+    const encoded = await encode(edge, level)
+    const lowest = level <= LOWEST_QUALITY && edge <= SMALLEST_EDGE
+    // At the floor the result is used as it is: a tiny, heavily compressed JPEG is far below any budget in practice.
+    if (encoded.blob.size <= maxBytes || lowest) return encoded
+    if (level > LOWEST_QUALITY) level = Math.max(LOWEST_QUALITY, Math.round((level - QUALITY_STEP) * 100) / 100)
+    else edge = Math.max(SMALLEST_EDGE, Math.round(edge * EDGE_STEP))
   }
 }
 

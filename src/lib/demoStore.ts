@@ -16,6 +16,8 @@ const clone = <T>(value: T): T => structuredClone(value)
 export function createDemoStore(): Store {
   /** Storage path → URL (a data: URL for samples, a blob: URL for uploads). */
   const media = new Map<string, string>()
+  /** Storage path → size in bytes, so the demo can report how much is "stored". */
+  const sizes = new Map<string, number>()
   const listeners = new Set<(user: AdminUser | null) => void>()
   let user = readSession()
 
@@ -27,6 +29,7 @@ export function createDemoStore(): Store {
       `<text x="50%" y="50%" fill="rgba(255,255,255,.9)" font-family="Georgia, serif" font-size="${Math.round(Math.min(width, height) / 12)}" text-anchor="middle" dominant-baseline="middle">${label}</text></svg>`
     const path = `demo/${newId()}.svg`
     media.set(path, `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`)
+    sizes.set(path, svg.length)
     return { path, thumbPath: path, width, height, ...(caption ? { caption } : {}) }
   }
 
@@ -136,6 +139,7 @@ export function createDemoStore(): Store {
       if (!matches(path)) continue
       if (url.startsWith('blob:')) URL.revokeObjectURL(url)
       media.delete(path)
+      sizes.delete(path)
     }
   }
 
@@ -259,6 +263,8 @@ export function createDemoStore(): Store {
       const photo: Photo = { path: `${folder}/${id}.jpg`, thumbPath: `${folder}/${id}_thumb.jpg`, width, height }
       media.set(photo.path, URL.createObjectURL(full))
       media.set(photo.thumbPath, URL.createObjectURL(thumb))
+      sizes.set(photo.path, full.size)
+      sizes.set(photo.thumbPath, thumb.size)
       return photo
     },
     async uploadVideo(file, folder, onProgress, signal) {
@@ -273,11 +279,19 @@ export function createDemoStore(): Store {
       }
       const path = `${folder}/${newId()}.${videoFormat(file).extension}`
       media.set(path, URL.createObjectURL(file))
+      sizes.set(path, file.size)
       return { path }
     },
     async deleteMedia(paths) {
       requireAdmin()
       forgetMedia((path) => paths.includes(path))
+    },
+    async storageUsage() {
+      await delay()
+      requireAdmin()
+      let bytes = 0
+      for (const size of sizes.values()) bytes += size
+      return { bytes, files: sizes.size }
     },
   }
 }

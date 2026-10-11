@@ -2,7 +2,18 @@ import { createDemoStore } from './demoStore'
 import { createReader } from './reader'
 import { createSnapshot, type Snapshot } from './snapshot'
 import { createSupabaseStore } from './supabaseStore'
-import type { AdminUser, Day, DayInput, DaySummary, ISODate, Photo, PublishedState, Trip, TripInput } from './types'
+import type {
+  AdminUser,
+  Day,
+  DayInput,
+  DaySummary,
+  ISODate,
+  Photo,
+  PublishedState,
+  StorageUsage,
+  Trip,
+  TripInput,
+} from './types'
 
 export interface ReadOptions {
   /**
@@ -80,6 +91,8 @@ export interface Store {
   ): Promise<{ path: string }>
   /** Removes stored files. Unknown paths are ignored. */
   deleteMedia(paths: string[]): Promise<void>
+  /** How much space the stored photos and clips take, to show against the plan's allowance. */
+  storageUsage(): Promise<StorageUsage>
 }
 
 const url = import.meta.env.VITE_SUPABASE_URL

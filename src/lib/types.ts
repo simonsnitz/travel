@@ -90,3 +90,9 @@ export interface PublishedState {
   /** ISO timestamp, or null when nothing is published. */
   latest: string | null
 }
+
+/** The space taken by every stored photo and clip, including those in drafts. */
+export interface StorageUsage {
+  bytes: number
+  files: number
+}

@@ -2,6 +2,7 @@ import { Eye, Mountain, PenLine, Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BackupStatus from '../../components/admin/BackupStatus'
 import RetryBanner from '../../components/admin/RetryBanner'
+import StorageUsage from '../../components/admin/StorageUsage'
 import TodayLink from '../../components/admin/TodayLink'
 import { useCrumbs } from '../../lib/crumbs'
 import { formatRange } from '../../lib/dates'
@@ -48,6 +49,7 @@ export default function AdminHomePage() {
       )}
 
       <BackupStatus />
+      <StorageUsage />
     </div>
   )
 }

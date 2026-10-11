@@ -68,6 +68,7 @@ You only need to deploy when the code changes. Writing and publishing days happe
 
 - **Write.** Sign in at `/#/admin`, pick a trip and a day. A day stays a draft, hidden from visitors, until you publish it.
 - **Add another trip.** Admin > New trip.
+- **Trade photo sharpness for space.** The size and quality photos are stored at are set in `src/config.ts` (`PHOTO_MAX_EDGE`, `PHOTO_QUALITY` and the lines below them). A change applies to photos uploaded afterwards, not to ones already stored. Then push.
 - **Change the site title or tagline.** Edit `src/config.ts`. The title also appears in `index.html`, which is what browser tabs and link previews use. Then push.
 - **Change your password, or get back in after forgetting it.** The site has no password-reset page, so the recovery email that Supabase offers to send cannot be completed here. Instead, under Authentication > Users, delete your login and create it again with the new password (Add user > Create new user). Deleting it takes you off the admin list, so run `supabase/schema.sql` once more afterwards. The script only makes a login the admin when it is the only login in the project, so delete any you don't recognise first.
 
@@ -75,7 +76,7 @@ You only need to deploy when the code changes. Writing and publishing days happe
 
 | Limit | What the site does about it |
 | --- | --- |
-| **1 GB of storage** in total | Photos are shrunk in your browser before they are uploaded: at most 2000 pixels on the long side, saved as JPEG, plus a small thumbnail. Redrawing the photo also strips its embedded data, such as where it was taken. |
+| **1 GB of storage** in total | Photos are shrunk in your browser before they are uploaded: at most 1600 pixels on the long side, saved as JPEG, plus a small thumbnail. A typical phone photo comes to 0.3 to 0.45 MB, and none is ever stored above 1 MB. Redrawing the photo also strips its embedded data, such as where it was taken. The editor's front page shows how much of the 1 GB is in use. |
 | **50 MB per file** | A clip over 50 MB is refused before the upload starts, with a message saying so. Clips are uploaded in pieces that are retried when the connection drops. |
 | Longer videos | Put the video on YouTube or Vimeo and paste the link into a video block. It plays on the page and uses none of your storage. |
 | **Supabase pauses a free project** that has seen little activity for about a week | Readers are not affected: the site serves them [the backup copy](#the-backup-copy). The daily backup run also reads the database, which is normally enough to keep the project awake. |
