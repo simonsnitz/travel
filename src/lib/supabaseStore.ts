@@ -19,6 +19,7 @@ const CACHE_SECONDS = '31536000'
 const BATCH = 100
 
 const OFFLINE = "Couldn't reach the server. Check your connection and try again."
+const RESTRICTED = 'The database is refusing requests. The Supabase project may be over its plan limits: check its dashboard.'
 const SIGNED_OUT = 'Sign in to make changes.'
 const NOT_ALLOWED = "This account doesn't have permission to edit."
 const NOT_SET_UP = "The site's database isn't set up yet. Run supabase/schema.sql in the Supabase SQL Editor."
@@ -96,6 +97,9 @@ function toError(cause: unknown, fallback = 'Something went wrong. Please try ag
     report.status === 0 ||
     status >= 500
   if (unreachable) return new UnreachableError(OFFLINE)
+  // 402 is how Supabase answers once it has restricted a project for exceeding its plan's
+  // limits. Nothing is being served, so readers should get the backup copy, as for an outage.
+  if (status === 402) return new UnreachableError(RESTRICTED)
   // A missing table, function or bucket: the setup script hasn't been run on this project.
   if (['PGRST202', 'PGRST205', '42P01'].includes(code) || /bucket not found/i.test(String(report.message))) {
     return new Error(NOT_SET_UP)
