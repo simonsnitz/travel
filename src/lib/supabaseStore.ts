@@ -1,8 +1,9 @@
 import { createClient, isAuthRetryableFetchError } from '@supabase/supabase-js'
 import type { PostgrestSingleResponse, Session, User } from '@supabase/supabase-js'
 import { isISODate } from './dates'
+import { UnreachableError } from './errors'
 import { assertVideoFile, mediaFolder, newId, processPhoto, videoFormat } from './media'
-import type { Store } from './store'
+import type { ReadOptions, Store } from './store'
 import type { AdminUser, Block, Day, DaySummary, Photo, Trip } from './types'
 import { tripProblem } from './validate'
 
@@ -94,7 +95,7 @@ function toError(cause: unknown, fallback = 'Something went wrong. Please try ag
     report.name === 'StorageUnknownError' ||
     report.status === 0 ||
     status >= 500
-  if (unreachable) return new Error(OFFLINE)
+  if (unreachable) return new UnreachableError(OFFLINE)
   // A missing table, function or bucket: the setup script hasn't been run on this project.
   if (['PGRST202', 'PGRST205', '42P01'].includes(code) || /bucket not found/i.test(String(report.message))) {
     return new Error(NOT_SET_UP)
@@ -133,6 +134,22 @@ const fetchWithTimeout: typeof fetch = (input, init) => {
   const target = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url
   const uploading = init?.method === 'POST' && target.includes('/storage/v1/object/')
   return fetch(input, { ...init, signal: AbortSignal.timeout(uploading ? UPLOAD_TIMEOUT_MS : REQUEST_TIMEOUT_MS) })
+}
+
+/** How long a reader's single attempt may take before the backup copy is used instead. */
+const QUICK_TIMEOUT_MS = 8_000
+
+/**
+ * Applies `failFast` to a query: no automatic retries (they add up to seven
+ * seconds of waiting when the project is paused) and a shorter time limit.
+ */
+function paced<Query extends { retry(enabled: boolean): Query; abortSignal(signal: AbortSignal): Query }>(
+  query: Query,
+  options: ReadOptions | undefined,
+): Query {
+  if (!options?.failFast) return query
+  const single = query.retry(false)
+  return typeof AbortSignal.timeout === 'function' ? single.abortSignal(AbortSignal.timeout(QUICK_TIMEOUT_MS)) : single
 }
 
 const ADMIN_KEY = 'travel-admin'
@@ -189,7 +206,7 @@ export function createSupabaseStore(url: string, key: string): Store {
   const currentSession = async (): Promise<Session | null> => {
     const { data, error } = await supabase.auth.getSession()
     // Any other error means the saved session is no longer valid, which is the same as none.
-    if (error && isAuthRetryableFetchError(error)) throw new Error(OFFLINE)
+    if (error && isAuthRetryableFetchError(error)) throw new UnreachableError(OFFLINE)
     return data.session
   }
 
@@ -288,14 +305,12 @@ export function createSupabaseStore(url: string, key: string): Store {
   return {
     mode: 'supabase',
 
-    async listTrips() {
-      const rows = unwrap(
-        await supabase.from('trips').select().order('start_date', { ascending: false }).order('created_at', { ascending: false }),
-      )
-      return rows.map(toTrip)
+    async listTrips(options) {
+      const query = supabase.from('trips').select().order('start_date', { ascending: false }).order('created_at', { ascending: false })
+      return unwrap(await paced(query, options)).map(toTrip)
     },
-    async getTrip(slug) {
-      const row = unwrap(await supabase.from('trips').select().eq('slug', slug).maybeSingle())
+    async getTrip(slug, options) {
+      const row = unwrap(await paced(supabase.from('trips').select().eq('slug', slug), options).maybeSingle())
       return row && toTrip(row)
     },
     async getTripById(id) {
@@ -309,14 +324,26 @@ export function createSupabaseStore(url: string, key: string): Store {
       // The database hides drafts from everyone but an admin anyway. This filter is for the
       // admin, who would otherwise see their own drafts on the public pages.
       if (!options?.includeDrafts) query = query.eq('published', true)
-      return unwrap(await query.order('date')).map(toSummary)
+      return unwrap(await paced(query.order('date'), options)).map(toSummary)
     },
-    async getDay(tripId, date) {
+    async getDay(tripId, date, options) {
       if (!isId(tripId) || !isISODate(date)) return null
-      const row = unwrap(await supabase.from('days').select().eq('trip_id', tripId).eq('date', date).maybeSingle())
+      const query = supabase.from('days').select().eq('trip_id', tripId).eq('date', date)
+      const row = unwrap(await paced(query, options).maybeSingle())
       return row && toDay(row)
     },
     mediaUrl: (path) => `${base}/storage/v1/object/public/${BUCKET}/${path.split('/').map(encodeURIComponent).join('/')}`,
+    async publishedState() {
+      // Filtered explicitly, because a signed-in admin is also shown drafts.
+      const response = await supabase
+        .from('days')
+        .select('updated_at', { count: 'exact' })
+        .eq('published', true)
+        .order('updated_at', { ascending: false })
+        .limit(1)
+      const rows = unwrap(response)
+      return { days: response.count ?? rows.length, latest: rows[0]?.updated_at ?? null }
+    },
 
     async getUser() {
       return adminOf(await currentSession())

@@ -1,5 +1,6 @@
 import { Eye, MapPin, PenLine, Trash2 } from 'lucide-react'
 import { useId, useMemo, useState, type MouseEvent } from 'react'
+import { store } from '../../lib/store'
 import type { Day, ISODate, Trip } from '../../lib/types'
 import DayContent from '../DayContent'
 import ActionBar from './ActionBar'
@@ -81,7 +82,12 @@ export default function DayEditor({ trip, date, day }: DayEditorProps) {
         {preview ? (
           <div className={styles.preview}>
             <p className="hint">This is how the day will look on the site.</p>
-            <DayContent tripStart={trip.startDate} day={{ date, location: preview.location, blocks: preview.blocks }} />
+            <DayContent
+              tripStart={trip.startDate}
+              day={{ date, location: preview.location, blocks: preview.blocks }}
+              // The editor shows what is in the database, never the backup copy.
+              mediaUrl={store.mediaUrl}
+            />
           </div>
         ) : (
           <>

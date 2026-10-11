@@ -1,6 +1,17 @@
 import { createDemoStore } from './demoStore'
+import { createReader } from './reader'
+import { createSnapshot, type Snapshot } from './snapshot'
 import { createSupabaseStore } from './supabaseStore'
-import type { AdminUser, Day, DayInput, DaySummary, ISODate, Photo, Trip, TripInput } from './types'
+import type { AdminUser, Day, DayInput, DaySummary, ISODate, Photo, PublishedState, Trip, TripInput } from './types'
+
+export interface ReadOptions {
+  /**
+   * Make one short attempt and reject at the first sign of trouble, instead of
+   * retrying. For the public pages, which have the backup copy to fall back on
+   * and so gain nothing from keeping a reader waiting.
+   */
+  failFast?: boolean
+}
 
 /**
  * Everything the UI needs from the backend. Pages talk to `store` and never to
@@ -14,21 +25,23 @@ export interface Store {
   // ── Reading (public) ────────────────────────────────────────────────────
 
   /** All trips, newest first. */
-  listTrips(): Promise<Trip[]>
-  getTrip(slug: string): Promise<Trip | null>
+  listTrips(options?: ReadOptions): Promise<Trip[]>
+  getTrip(slug: string, options?: ReadOptions): Promise<Trip | null>
   getTripById(id: string): Promise<Trip | null>
   /**
    * Days of a trip in date order, without their blocks. Drafts are returned
    * only when `includeDrafts` is set and the caller is signed in.
    */
-  listDays(tripId: string, options?: { includeDrafts?: boolean }): Promise<DaySummary[]>
+  listDays(tripId: string, options?: ReadOptions & { includeDrafts?: boolean }): Promise<DaySummary[]>
   /**
    * One day with its blocks, or null if there is none. A signed-in admin also
    * receives drafts, so public pages must treat `published: false` as missing.
    */
-  getDay(tripId: string, date: ISODate): Promise<Day | null>
+  getDay(tripId: string, date: ISODate, options?: ReadOptions): Promise<Day | null>
   /** Public URL for a stored photo or video path. Synchronous and cheap. */
   mediaUrl(path: string): string
+  /** What is published right now, for comparing with the backup copy. */
+  publishedState(): Promise<PublishedState>
 
   // ── Sign-in ─────────────────────────────────────────────────────────────
 
@@ -74,3 +87,17 @@ const key = import.meta.env.VITE_SUPABASE_KEY
 
 /** Supabase when it is configured, otherwise an in-memory demo with sample content. */
 export const store: Store = url && key ? createSupabaseStore(url, key) : createDemoStore()
+
+/** The backup copy that is published beside the site, or null where there is none (the demo). */
+export const backupCopy: Snapshot | null =
+  store.mode === 'supabase' && typeof document !== 'undefined'
+    ? createSnapshot(new URL('snapshot/', document.baseURI).href)
+    : null
+
+/**
+ * What the public pages read through. It asks `store` first and, if the server
+ * can't be reached, serves the backup copy that is published with the site
+ * (see scripts/snapshot.mjs). The admin pages use `store` directly: an editor
+ * must never mistake a copy for the real thing.
+ */
+export const reader = createReader(store, backupCopy)

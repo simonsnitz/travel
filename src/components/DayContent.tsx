@@ -1,7 +1,7 @@
 import { useMemo, useState, type CSSProperties, type MouseEvent } from 'react'
 import { dayNumber, formatDay, formatWeekday, isISODate } from '../lib/dates'
 import { parseVideoUrl } from '../lib/embed'
-import { store } from '../lib/store'
+import { reader } from '../lib/store'
 import type { Block, ISODate, PhotosBlock, VideoBlock } from '../lib/types'
 import Lightbox, { type LightboxPhoto } from './Lightbox'
 import { blockHasContent, externalHref, photoAlt, splitParagraphs, tileShape } from './dayLayout'
@@ -11,13 +11,20 @@ export interface DayContentProps {
   /** The trip's first date, used to show "Day N". */
   tripStart: ISODate
   day: { date: ISODate; location: string; blocks: Block[] }
+  /**
+   * Turns a stored path into a URL. Public pages leave this out and get the
+   * reader's, which can serve the backup copy. The editor passes the store's.
+   */
+  mediaUrl?: MediaUrl
 }
+
+type MediaUrl = (path: string) => string
 
 /**
  * One day of the journal: its heading, then its blocks in order. Everything
  * comes from the props, so the editor can show a live preview with it.
  */
-export default function DayContent({ tripStart, day }: DayContentProps) {
+export default function DayContent({ tripStart, day, mediaUrl = reader.mediaUrl }: DayContentProps) {
   const place = day.location.trim()
   /** Position, among all of the day's photos, of the one open in the lightbox. */
   const [openPhoto, setOpenPhoto] = useState<number | null>(null)
@@ -32,9 +39,9 @@ export default function DayContent({ tripStart, day }: DayContentProps) {
         const inGrid = block.photos.length > 1
         for (const photo of block.photos) {
           photos.push({
-            src: store.mediaUrl(photo.path),
+            src: mediaUrl(photo.path),
             // Only a grid has already fetched the small version.
-            placeholderSrc: inGrid ? store.mediaUrl(photo.thumbPath) : undefined,
+            placeholderSrc: inGrid ? mediaUrl(photo.thumbPath) : undefined,
             width: photo.width,
             height: photo.height,
             alt: photoAlt(photo, place),
@@ -45,7 +52,7 @@ export default function DayContent({ tripStart, day }: DayContentProps) {
       return offset
     })
     return { photos, offsets }
-  }, [day.blocks, place])
+  }, [day.blocks, place, mediaUrl])
 
   // The editor's preview can pass a date that is still being typed.
   const dated = isISODate(day.date)
@@ -78,9 +85,17 @@ export default function DayContent({ tripStart, day }: DayContentProps) {
         if (block.type === 'text') return <Prose key={block.id} text={block.text} />
         if (block.type === 'photos') {
           const offset = gallery.offsets[position]
-          return <Photos key={block.id} block={block} place={place} onOpen={(index) => setOpenPhoto(offset + index)} />
+          return (
+            <Photos
+              key={block.id}
+              block={block}
+              place={place}
+              mediaUrl={mediaUrl}
+              onOpen={(index) => setOpenPhoto(offset + index)}
+            />
+          )
         }
-        return <Video key={block.id} block={block} place={place} />
+        return <Video key={block.id} block={block} place={place} mediaUrl={mediaUrl} />
       })}
 
       {!day.blocks.some(blockHasContent) && <p className={styles.empty}>Nothing written for this day yet.</p>}
@@ -107,7 +122,17 @@ function Prose({ text }: { text: string }) {
   )
 }
 
-function Photos({ block, place, onOpen }: { block: PhotosBlock; place: string; onOpen: (index: number) => void }) {
+function Photos({
+  block,
+  place,
+  mediaUrl,
+  onOpen,
+}: {
+  block: PhotosBlock
+  place: string
+  mediaUrl: MediaUrl
+  onOpen: (index: number) => void
+}) {
   // The lightbox hands focus back to whatever had it when it opened. Safari,
   // and Firefox on a Mac, don't focus a button that is clicked, so do it here.
   const open = (index: number) => (event: MouseEvent<HTMLButtonElement>) => {
@@ -127,7 +152,7 @@ function Photos({ block, place, onOpen }: { block: PhotosBlock; place: string; o
           onClick={open(0)}
         >
           <img
-            src={store.mediaUrl(photo.path) || undefined}
+            src={mediaUrl(photo.path) || undefined}
             alt={photoAlt(photo, place)}
             width={photo.width}
             height={photo.height}
@@ -148,7 +173,7 @@ function Photos({ block, place, onOpen }: { block: PhotosBlock; place: string; o
           <figure key={photo.path} className={classes(styles.cell, lead && styles.lead, half && styles.half)}>
             <button type="button" className={styles.tile} aria-haspopup="dialog" onClick={open(index)}>
               <img
-                src={store.mediaUrl(photo.thumbPath) || undefined}
+                src={mediaUrl(photo.thumbPath) || undefined}
                 alt={photoAlt(photo, place)}
                 width={photo.width}
                 height={photo.height}
@@ -164,9 +189,9 @@ function Photos({ block, place, onOpen }: { block: PhotosBlock; place: string; o
   )
 }
 
-function Video({ block, place }: { block: VideoBlock; place: string }) {
+function Video({ block, place, mediaUrl }: { block: VideoBlock; place: string; mediaUrl: MediaUrl }) {
   const label = block.caption?.trim() || (place ? `Video from ${place}` : 'Video')
-  if (block.source === 'upload') return <Clip path={block.path} label={label} caption={block.caption} />
+  if (block.source === 'upload') return <Clip url={mediaUrl(block.path)} label={label} caption={block.caption} />
 
   const embed = parseVideoUrl(block.url)
   if (!embed) {
@@ -205,9 +230,8 @@ function Video({ block, place }: { block: VideoBlock; place: string }) {
 }
 
 /** An uploaded clip. Its shape is unknown until the browser has read the file's header. */
-function Clip({ path, label, caption }: { path: string; label: string; caption?: string }) {
+function Clip({ url, label, caption }: { url: string; label: string; caption?: string }) {
   const [ratio, setRatio] = useState(16 / 9)
-  const url = store.mediaUrl(path)
   return (
     <figure className={styles.figure}>
       <video

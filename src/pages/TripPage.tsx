@@ -8,7 +8,7 @@ import { adjacentDays, defaultDate } from '../components/tripDays'
 import { useAuth } from '../lib/auth'
 import { useCrumbs, type Crumb } from '../lib/crumbs'
 import { formatDay, formatRange, isISODate } from '../lib/dates'
-import { store } from '../lib/store'
+import { reader } from '../lib/store'
 import type { DaySummary, Trip } from '../lib/types'
 import { useAsync } from '../lib/useAsync'
 import NotFoundPage from './NotFoundPage'
@@ -17,7 +17,7 @@ import styles from './TripPage.module.css'
 /** A trip, opened at one of its days: /:tripSlug or /:tripSlug/:date. */
 export default function TripPage() {
   const { tripSlug = '', date } = useParams()
-  const { data: trip, error, reload } = useAsync(() => store.getTrip(tripSlug), [tripSlug])
+  const { data: trip, error, reload } = useAsync(() => reader.getTrip(tripSlug), [tripSlug])
 
   if (error) {
     return (
@@ -39,7 +39,7 @@ export default function TripPage() {
 }
 
 function TripView({ trip, date }: { trip: Trip; date: string | undefined }) {
-  const { data: days, error, reload } = useAsync(() => store.listDays(trip.id), [trip.id])
+  const { data: days, error, reload } = useAsync(() => reader.listDays(trip.id), [trip.id])
   // A trip with nothing published gets a note instead of the usual layout, but
   // only at the trip's own address. An address that names a day is still looked
   // up: that day may have been published after the list was loaded.
@@ -110,7 +110,7 @@ function DayView({ trip, days, date, onUnlisted }: DayViewProps) {
   const { user } = useAuth()
   const valid = isISODate(date)
   const { data, error, reload } = useAsync(
-    () => (valid ? store.getDay(trip.id, date) : Promise.resolve(null)),
+    () => (valid ? reader.getDay(trip.id, date) : Promise.resolve(null)),
     [trip.id, date],
   )
   // A signed-in owner is also handed drafts. The public page shows them to no one.

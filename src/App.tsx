@@ -1,9 +1,9 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useSyncExternalStore } from 'react'
 import { Route, Routes, useLocation, useNavigationType } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { CrumbsProvider } from './lib/crumbs'
 import ErrorBoundary from './lib/ErrorBoundary'
-import { store } from './lib/store'
+import { reader, store } from './lib/store'
 import NotFoundPage from './pages/NotFoundPage'
 import TripPage from './pages/TripPage'
 import TripsPage from './pages/TripsPage'
@@ -23,6 +23,7 @@ const loading = (
 export default function App() {
   const { pathname } = useLocation()
   const navigation = useNavigationType()
+  const usingBackup = useSyncExternalStore(reader.subscribe, reader.usingBackup)
 
   // A page opened by a link starts at the top. Going back or forward is left
   // alone, so the browser can return to where the reader was.
@@ -33,6 +34,11 @@ export default function App() {
   return (
     <CrumbsProvider>
       <Navbar />
+      {usingBackup && !pathname.startsWith('/admin') && (
+        <p className="backup-note" role="status">
+          You're reading a saved copy of this site, so the newest entries may be missing.
+        </p>
+      )}
       <ErrorBoundary resetKey={pathname}>
         <Suspense fallback={loading}>
           <Routes>

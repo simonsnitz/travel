@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Block, Photo } from '../lib/types'
 import DayContent from './DayContent'
 
-vi.mock('../lib/store', () => ({ store: { mediaUrl: (path: string) => `https://media.test/${path}` } }))
+vi.mock('../lib/store', () => ({ reader: { mediaUrl: (path: string) => `https://media.test/${path}` } }))
 
 const photo = (name: string, caption?: string): Photo => ({
   path: `${name}.jpg`,

@@ -7,14 +7,14 @@ import { isUnderWay } from '../components/tripDays'
 import { SITE_TAGLINE, SITE_TITLE } from '../config'
 import { useCrumbs } from '../lib/crumbs'
 import { formatRange } from '../lib/dates'
-import { store } from '../lib/store'
+import { reader } from '../lib/store'
 import type { Trip } from '../lib/types'
 import { useAsync } from '../lib/useAsync'
 import styles from './TripsPage.module.css'
 
 export default function TripsPage() {
   useCrumbs([])
-  const { data: trips, error, reload } = useAsync(() => store.listTrips(), [])
+  const { data: trips, error, reload } = useAsync(() => reader.listTrips(), [])
 
   // Hash navigation keeps the scroll position of the page the reader came from.
   useEffect(() => {
@@ -71,7 +71,7 @@ function TripList({ trips }: { trips: Trip[] }) {
 function TripTile({ trip, featured = false }: { trip: Trip; featured?: boolean }) {
   const { cover } = trip
   // The big tile is wide enough on a desktop to need the full-size photo.
-  const fullSize = featured && cover ? store.mediaUrl(cover.path) : ''
+  const fullSize = featured && cover ? reader.mediaUrl(cover.path) : ''
 
   return (
     <Link to={`/${trip.slug}`} className={`card ${styles.tile} ${featured ? styles.featured : ''}`}>
@@ -80,7 +80,7 @@ function TripTile({ trip, featured = false }: { trip: Trip; featured?: boolean }
           <picture>
             {fullSize && <source media="(min-width: 760px)" srcSet={fullSize} />}
             <img
-              src={store.mediaUrl(cover.thumbPath) || undefined}
+              src={reader.mediaUrl(cover.thumbPath) || undefined}
               alt=""
               width={cover.width}
               height={cover.height}

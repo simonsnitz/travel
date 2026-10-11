@@ -29,7 +29,7 @@ vi.mock('../lib/crumbs', () => ({
   },
 }))
 vi.mock('../lib/auth', () => ({ useAuth: () => ({ user: state.user, loading: false }) }))
-vi.mock('../lib/store', () => ({ store: { mediaUrl: (path: string) => `https://media.test/${path}` } }))
+vi.mock('../lib/store', () => ({ reader: { mediaUrl: (path: string) => `https://media.test/${path}` } }))
 vi.mock('../lib/dates', async (original) => ({
   ...(await original<typeof import('../lib/dates')>()),
   today: () => state.today,

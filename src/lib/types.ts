@@ -80,3 +80,13 @@ export interface DayInput {
   blocks: Block[]
   published: boolean
 }
+
+/**
+ * A fingerprint of what is published: how many days, and when the newest of
+ * them was last saved. The backup copy records the same two values.
+ */
+export interface PublishedState {
+  days: number
+  /** ISO timestamp, or null when nothing is published. */
+  latest: string | null
+}

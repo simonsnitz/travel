@@ -169,6 +169,11 @@ export function createDemoStore(): Store {
       return clone(day)
     },
     mediaUrl: (path) => media.get(path) ?? '',
+    async publishedState() {
+      const published = days.filter((day) => day.published)
+      const latest = published.map((day) => day.updatedAt).sort().at(-1) ?? null
+      return { days: published.length, latest }
+    },
 
     async getUser() {
       return user

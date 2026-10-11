@@ -388,6 +388,16 @@ button {
   transition: width 0.2s;
 }
 
+/* Shown to readers while the pages come from the backup copy instead of the database. */
+.backup-note {
+  padding: 8px max(20px, env(safe-area-inset-right)) 8px max(20px, env(safe-area-inset-left));
+  border-bottom: 1px solid var(--border);
+  background: var(--highlight-soft);
+  color: var(--highlight-text);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 .demo-flag {
   position: fixed;
   right: 12px;
