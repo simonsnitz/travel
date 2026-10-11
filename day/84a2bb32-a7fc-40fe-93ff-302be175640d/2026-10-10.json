@@ -1,0 +1,34 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-10",
+  "location": "New Delhi",
+  "published": true,
+  "blocks": [
+    {
+      "id": "e6db789e-b6a3-48a0-b8be-f548c70be93e",
+      "text": "Decided to detox from Delhi's chaos by going to a calm cafe in Cannaught, central New Delhi around 6:30am. On the way, the main street was closed by police and they wouldn't let me through. I thought they were asking for a bribe, but I later found out that there was a big protest planned and the gov literally shut down the whole downtown Delhi area where the protest would be. I managed to make my way through and fortunately one cafe, Blue Tokai, was still open. Calm at last :)",
+      "type": "text"
+    },
+    {
+      "id": "4f7465bd-3109-4741-9926-272990ea8e21",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/e765f6eb-8ba8-4974-95aa-f156cb03f945.jpg",
+          "width": 2000,
+          "height": 1500,
+          "caption": "Street closed",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/e765f6eb-8ba8-4974-95aa-f156cb03f945_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/ca1879ee-30d5-42f9-83e7-acee4eb06af3.jpg",
+          "width": 1500,
+          "height": 2000,
+          "caption": "Blue Tokai",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-10/ca1879ee-30d5-42f9-83e7-acee4eb06af3_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-11T03:29:57.861306+00:00"
+}
