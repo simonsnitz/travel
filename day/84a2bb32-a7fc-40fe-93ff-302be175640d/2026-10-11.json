@@ -21,7 +21,89 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/582922c6-57b3-4aed-a130-002c4dff64b2_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "9c3c7646-8569-4350-a69a-c9c59f9d5e2b",
+      "text": "After coffee I had some time to kill. I originally planned to go to Humayun's tomb, but several people on the street said that it was closed due to the protests (unsure if that's true or not. People lie here a lot). I was looking for a market and someone on the street led me to one called Indian Loom, which is a known tourist trap with overpriced things, but I figured I'd look anyways. There were some genuinely cool textiles there (shirts, tapestries). They wouldn't let you take pictures, but I got one shop owner to take a picture of me in one of their shirts.",
+      "type": "text"
+    },
+    {
+      "id": "16e116c1-0f45-4063-89e8-c6ba7ae65d12",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/88aa5a2e-fefe-4a8f-bc33-7ccef23b8e24.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Tourist trap!",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/88aa5a2e-fefe-4a8f-bc33-7ccef23b8e24_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/4a60cf3b-1afc-40d9-b71e-2c2488a3e40c.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "But I love the color",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/4a60cf3b-1afc-40d9-b71e-2c2488a3e40c_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "efc4f2fd-50bb-4b57-942a-6f5053b0958f",
+      "text": "Afterwards, I got some street food. Naan and rice with several different curries (spinach, tomato, and a ginger/turnip) and yogurt for 100 rupees ($1). I then hit a long street lined with street vendors and got some Nagori tea (20 rupees), which was a very sweet milky tea.",
+      "type": "text"
+    },
+    {
+      "id": "419cb6d3-72f7-4b4d-b54a-a4d9edc3e079",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/e678b13d-1a87-41cf-9153-b28df21d114f.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Naan & curries",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/e678b13d-1a87-41cf-9153-b28df21d114f_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/e6ffe433-a9a0-4ef1-8784-57745a0b9094.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "How it's made",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/e6ffe433-a9a0-4ef1-8784-57745a0b9094_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/5ec803a9-c547-48f2-86e8-ce39ece6d430.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Nagori tea",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/5ec803a9-c547-48f2-86e8-ce39ece6d430_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "46d5b410-cd2c-45c0-8479-a2b47f6bb18e",
+      "text": "After getting back to the hostel, I met several other solo backpackers. Roxanne, a lawyer from NY and Japan, Aya, from Japan, and Alex, a mergers and acquisition consultant from San Francisco. We chatted for a while about our past and upcoming travels. Many of them have been on the road for months (2-6 months!). They had all been to Nepal and said I'd love it. Roxanne was most recently in Bhutan and parts of Africa. She said that a lot of travelers there were older, like in their 50s. We got a big spread of different curries (one with cauliflower, another with cashews, and another with chickpeas), alongside rice and naan. I love these brief moments of connection with people you'll likely never talk to again. Afterwards, I got a beer with Alex at a local bar. The beer was ~650mL and 8%! I also admired a monkey chilling on top of a car :)",
+      "type": "text"
+    },
+    {
+      "id": "3516b31a-5dfc-4fbe-9850-e6dc38b73c56",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/60e91fce-450a-4068-b770-5915167cb334.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Dinner with backpackers",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/60e91fce-450a-4068-b770-5915167cb334_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "a73bdf2d-7119-4f2a-850e-9dcd6611f8f9",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-11/29ccfd9c-dfe8-4e8e-8f29-ead25337d6dd.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Monkeys!"
     }
   ],
-  "updatedAt": "2026-10-11T07:06:19.788375+00:00"
+  "updatedAt": "2026-10-12T06:57:27.699477+00:00"
 }

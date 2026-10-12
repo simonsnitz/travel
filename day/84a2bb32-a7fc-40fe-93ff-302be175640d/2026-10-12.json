@@ -1,0 +1,66 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-12",
+  "location": "Delhi & Kathmandu",
+  "published": true,
+  "blocks": [
+    {
+      "id": "dc588cc5-68a1-4f33-a6af-fabbaca3067a",
+      "text": "On my way to a cafe this morning, I got the full Delhi scammer experience.\n\nI think I’m now learning how they work. It’s a two man show: a guide and a seller. The guide offers to help you in some way. They ask you questions and try to direct you to certain places that you might actually want to go, like a market, or a place to buy train tickets. Sometimes you just go there to lose them, especially if it’s close to where you want to go anyways. You then get sent to the seller who tries to sell you stuff (clothing, food, train tickets), and they’ll try to manipulate you in clever ways. This one guy at a train ticket office was saying that he meditates every day, and he could feel that I looked unbalanced and stressed. He was taking the spiritual high ground. They’ll also straight up lie to you. He said that he’s good friends with Ram Das, and that he’s buddy buddy with a Harvard professor. Then they’ll go in for the sale, $550 for unlimited train passes for 3 weeks. If you end up buying what they sell (thank god I didn’t!), the guide who led you there will take a cut of whatever the seller made (the guide person hangs out outside the place they dropped you off at). \n\nTo stay sane in Delhi, you sometimes need to be kinda rude.\nThe unfortunate consequence is that the scammers condition you to brush away genuinely nice people.\n\nAnyways, I stopped by a corner shop and got a butter Paratha. The cost of menu items there ranged from $0.10 to ~$1.90. I then landed in a Starbucks that was closed the past couple days because of the protests. It was a really nice atmosphere, but the coffee at Blue Tokai was much better, and there was no WiFi.",
+      "type": "text"
+    },
+    {
+      "id": "6f1f009f-3b80-47f6-b95b-6c29254d0889",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/fa926d0c-ce5c-47a9-9ca4-aae893dcec0f.jpg",
+          "width": 1600,
+          "height": 1229,
+          "caption": "Vendor menu",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/fa926d0c-ce5c-47a9-9ca4-aae893dcec0f_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/d115ce1b-29ce-4cb4-94b7-6897bd145aaf.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Starbucks",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/d115ce1b-29ce-4cb4-94b7-6897bd145aaf_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "4b20ce03-8f13-4465-84cc-89a552574d7e",
+      "text": "Before leaving for my flight, I got some last minute grub: Punjab-style Rajma rice. Interestingly, its seems like India's version of the classic rice and beans dish. Here, they cook it with rich ghee and loads of spices (ginger, cumin, coriander, etc.). Outside another store I saw some street dogs, just hanging out. The dogs here seem so calm. \n\nAt 2pm I got an Uber to the airport. This driver knew how to drive in Delhi! At several points we came millimeters from hitting other cars or motorcycles. No seat belts.",
+      "type": "text"
+    },
+    {
+      "id": "ff0e18de-7e93-480c-8aac-841c0fa70b08",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/192c37db-2fc1-465e-a337-4d877efa44e2.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Rajma rice",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/192c37db-2fc1-465e-a337-4d877efa44e2_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/16e53707-de3b-4cbe-bea9-24f4303a75c3.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Street dogs",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/16e53707-de3b-4cbe-bea9-24f4303a75c3_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/c099cf8d-260d-4f36-88b5-075138d86611.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Taxi to the airport",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/c099cf8d-260d-4f36-88b5-075138d86611_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-12T11:04:44.173436+00:00"
+}
