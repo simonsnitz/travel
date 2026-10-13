@@ -6,7 +6,7 @@
   "blocks": [
     {
       "id": "dc588cc5-68a1-4f33-a6af-fabbaca3067a",
-      "text": "On my way to a cafe this morning, I got the full Delhi scammer experience.\n\nI think I’m now learning how they work. It’s a two man show: a guide and a seller. The guide offers to help you in some way. They ask you questions and try to direct you to certain places that you might actually want to go, like a market, or a place to buy train tickets. Sometimes you just go there to lose them, especially if it’s close to where you want to go anyways. You then get sent to the seller who tries to sell you stuff (clothing, food, train tickets), and they’ll try to manipulate you in clever ways. This one guy at a train ticket office was saying that he meditates every day, and he could feel that I looked unbalanced and stressed. He was taking the spiritual high ground. They’ll also straight up lie to you. He said that he’s good friends with Ram Das, and that he’s buddy buddy with a Harvard professor. Then they’ll go in for the sale, $550 for unlimited train passes for 3 weeks. If you end up buying what they sell (thank god I didn’t!), the guide who led you there will take a cut of whatever the seller made (the guide person hangs out outside the place they dropped you off at). \n\nTo stay sane in Delhi, you sometimes need to be kinda rude.\nThe unfortunate consequence is that the scammers condition you to brush away genuinely nice people.\n\nAnyways, I stopped by a corner shop and got a butter Paratha. The cost of menu items there ranged from $0.10 to ~$1.90. I then landed in a Starbucks that was closed the past couple days because of the protests. It was a really nice atmosphere, but the coffee at Blue Tokai was much better, and there was no WiFi.",
+      "text": "On my way to a cafe this morning, I got the full Delhi scammer experience.\n\nI think I’m now learning how they work. It’s a two man show: a guide and a seller. The guide offers to help you in some way. They ask you questions and try to direct you to certain places that you might actually want to go, like a market, or a place to buy train tickets. Sometimes you just go there to lose them, especially if it’s close to where you want to go anyways. You then get sent to the seller who tries to sell you stuff (clothing, food, train tickets), and they’ll try to manipulate you in clever ways. Then they’ll go in for the sale, $550 for unlimited train passes for 3 weeks. If you end up buying what they sell (thank god I didn’t!), the guide who led you there will take a cut of whatever the seller made (the guide person hangs out around the place they dropped you off at). \n\nTo stay sane in Delhi, you sometimes need to be kinda rude.\nThe unfortunate consequence is that the scammers condition you to brush away genuinely nice people.\n\nAnyways, I stopped by a corner shop and got a butter Paratha. The cost of menu items there ranged from $0.10 to ~$1.90. I then landed in a Starbucks that was closed the past couple days because of the protests. It was a really nice atmosphere, but the coffee at Blue Tokai was much better, and no WiFi.",
       "type": "text"
     },
     {
@@ -31,7 +31,7 @@
     },
     {
       "id": "4b20ce03-8f13-4465-84cc-89a552574d7e",
-      "text": "Before leaving for my flight, I got some last minute grub: Punjab-style Rajma rice. Interestingly, its seems like India's version of the classic rice and beans dish. Here, they cook it with rich ghee and loads of spices (ginger, cumin, coriander, etc.). Outside another store I saw some street dogs, just hanging out. The dogs here seem so calm. \n\nAt 2pm I got an Uber to the airport. This driver knew how to drive in Delhi! At several points we came millimeters from hitting other cars or motorcycles. No seat belts.",
+      "text": "Before leaving for my flight, I got some last minute grub: Punjab-style Rajma rice. Interestingly, its seems like India's version of the classic rice and beans dish. Here, they cook it with rich ghee and loads of spices (ginger, cumin, coriander, etc.). Outside another store I saw some street dogs, just hanging out. The dogs here seem so calm. \n\nAt 2pm I got an Uber to the airport. This driver knew how to navigate the crazy Delhi streets! At several points we came millimeters from hitting other cars or motorcycles. No seat belts.",
       "type": "text"
     },
     {
@@ -60,7 +60,58 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/c099cf8d-260d-4f36-88b5-075138d86611_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "f92dc138-dfc5-4971-af9c-6efc88eeb6a5",
+      "text": "After a 1.5 hour flight, I landed in Kathmandu and breezed through immigration. Immediately, the city felt way different. There were advertisements for meditation retreats in the airport!\n\nI caught an Uber to the hostel by 9pm. Apparently you can't pay through the Uber app, but instead you pay the driver cash. (I wonder how Uber makes money that way? Maybe they require drivers to pay them some fraction of what they make?). My room in the hostel was huge and cozy. I then walked around the beautifully lite and colorful Kathmandu streets in search of a quick bite. Vendors would still try to pull you into their stores, but the city felt incredibly calm and peaceful coming from Delhi. I got some buffalo momos for 200 Nepali rupees ($2). The buffalo meat tasted similar to beef, but you can't find beef since killing cows is illegal in Nepal (the country is 80% Hindu).",
+      "type": "text"
+    },
+    {
+      "id": "357f596d-5a51-41e2-9f0d-5d7732b4cdbf",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/5b662735-f6b8-4544-b56f-25b8bf8842f2.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Meditation ad",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/5b662735-f6b8-4544-b56f-25b8bf8842f2_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/b4180bf8-163a-4dbe-be99-ac08e0003f3a.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Spacious room",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/b4180bf8-163a-4dbe-be99-ac08e0003f3a_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/e2aca3a9-ac38-484f-87f7-86841f2fe61c.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Kathmandu streets",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/e2aca3a9-ac38-484f-87f7-86841f2fe61c_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/c764b8f5-6fb4-4efc-a12b-2b572037b0ef.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Buffalo momos!",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/c764b8f5-6fb4-4efc-a12b-2b572037b0ef_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/5d6d7837-5f4b-40b3-a1e0-abc9f3123cf1.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Kathmandu alleyway",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-12/5d6d7837-5f4b-40b3-a1e0-abc9f3123cf1_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "18b06232-4a65-4eb6-8659-ab99ded53fe3",
+      "text": "Around 11:30pm that night I chatted with some fellow solo backpackers at the hostel: three from China, a guy from Italy, and a girl (Samari) from Bangladesh. We talked about our past trips and future plans. One of the Chinese guys planned to hike the 14-day Everest base camp trek by himself! Always nice chatting with fellow travellers.",
+      "type": "text"
     }
   ],
-  "updatedAt": "2026-10-12T11:04:44.173436+00:00"
+  "updatedAt": "2026-10-13T03:57:40.003338+00:00"
 }

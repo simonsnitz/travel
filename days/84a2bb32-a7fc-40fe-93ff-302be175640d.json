@@ -18,7 +18,7 @@
     "date": "2026-10-09",
     "location": "Doha & Delhi",
     "published": true,
-    "updatedAt": "2026-10-11T06:16:16.602943+00:00"
+    "updatedAt": "2026-10-13T03:40:06.860004+00:00"
   },
   {
     "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
@@ -32,13 +32,20 @@
     "date": "2026-10-11",
     "location": "Delhi",
     "published": true,
-    "updatedAt": "2026-10-12T06:57:27.699477+00:00"
+    "updatedAt": "2026-10-13T03:41:55.76129+00:00"
   },
   {
     "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
     "date": "2026-10-12",
     "location": "Delhi & Kathmandu",
     "published": true,
-    "updatedAt": "2026-10-12T11:04:44.173436+00:00"
+    "updatedAt": "2026-10-13T03:57:40.003338+00:00"
+  },
+  {
+    "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+    "date": "2026-10-13",
+    "location": "Kathmandu",
+    "published": true,
+    "updatedAt": "2026-10-13T03:59:37.856483+00:00"
   }
 ]

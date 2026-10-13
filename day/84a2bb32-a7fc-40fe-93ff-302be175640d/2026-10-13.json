@@ -1,0 +1,41 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-13",
+  "location": "Kathmandu",
+  "published": true,
+  "blocks": [
+    {
+      "id": "eacf5447-2579-4399-b31f-48fbedaf9fe2",
+      "text": "Morning..",
+      "type": "text"
+    },
+    {
+      "id": "dd0d8cfe-2f74-4cf0-b12c-1e9bcf882117",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/238b0ce8-a9b1-45a7-92ce-e68e8d011612.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Nepali currency",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/238b0ce8-a9b1-45a7-92ce-e68e8d011612_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/38740b15-21c5-4086-8c28-a04f722c7901.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Sel roti & tarkari",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/38740b15-21c5-4086-8c28-a04f722c7901_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/345c4151-3d9a-4d5a-8c2b-3aca9d90f24e.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Milk tea",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/345c4151-3d9a-4d5a-8c2b-3aca9d90f24e_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-13T03:59:37.856483+00:00"
+}
