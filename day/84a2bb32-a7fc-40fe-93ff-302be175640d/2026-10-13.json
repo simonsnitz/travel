@@ -6,7 +6,7 @@
   "blocks": [
     {
       "id": "eacf5447-2579-4399-b31f-48fbedaf9fe2",
-      "text": "Morning..",
+      "text": "The Nepalese currency is the coolest. Each bill has a different animal on it.\n\nAnyways, I was on the hunt for a traditional breakfast this morning. Apparently it's not common to have breakfast in Nepal, but there are still some mid-morning snacks people have. I walked 20 minutes outside the touristy Thamel to find a little open restaurant where I got Sel roti (a deep fried rice donut), tarkari (a chickpea curry soup), and a masala chai ($0.92 total). In search of Wifi, I later ended up at a cafe and got a milk tea. The server was a very kind college-aged kid.",
       "type": "text"
     },
     {
@@ -35,7 +35,115 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/345c4151-3d9a-4d5a-8c2b-3aca9d90f24e_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "127566fd-7f66-4a33-a64d-30b9ebea6d2f",
+      "text": "At the hostel I met three friends from northeast India who were traveling together (Namin, Bhaskar, and \"Sony\"). They were super friendly and were trying to help me plan my trip to Pokhara. They also suggested I try to visit Kolkata during a huge festival going on now until October 21st. We went out for lunch together and got Thali, which is a plate with rice in the middle and several sides around it (spinach, curried vegetables, mutton, dal).",
+      "type": "text"
+    },
+    {
+      "id": "1fe02430-e9ba-4b68-afe1-c2197be789b4",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/2a59a28b-bdf9-4c68-9fa7-6c2f24457d42.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Thali with travelers",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/2a59a28b-bdf9-4c68-9fa7-6c2f24457d42_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "bfd86e4b-669e-4e33-bfbd-e609fbb52ad2",
+      "text": "After lunch, I got cab (1 hour) to check out the Chandragiri cable car. The cable car goes up 1000 meters and you get stunning views of the surrounding mountains. At the top the atmosphere felt a bit like an amusement park. There were food vendors and small rides for kids, alongside a Hindu temple. I took a short 200m zipline over the mountains for ~$5. A quick thrill!",
+      "type": "text"
+    },
+    {
+      "id": "035616b4-d915-4718-a3bf-ca086cf52cf1",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/03ed0354-4ed1-4741-9438-38a7518257f1.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Inside the cable car",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/03ed0354-4ed1-4741-9438-38a7518257f1_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/ebe4d7e2-f1c6-4572-ab19-051365cd3e35.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "View from the car",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/ebe4d7e2-f1c6-4572-ab19-051365cd3e35_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/bd4770ee-68e2-4e19-ab6c-ad838b8bacec.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Village in the mountains",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/bd4770ee-68e2-4e19-ab6c-ad838b8bacec_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/6d06b199-11ae-479d-b62f-23073ea304bc.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Mountains",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/6d06b199-11ae-479d-b62f-23073ea304bc_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/36b348e7-3e98-4a36-9623-7839ed060eb9.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Zip lining",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/36b348e7-3e98-4a36-9623-7839ed060eb9_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cffc2576-340c-4a11-ad81-bc72f541cfaf",
+      "text": "Back in Kathmandu, I noticed several Swastikas in the streets (on a post, or a little sidewalk temple). I looked into it, and apparently that's an ancient religious symbol in Hinduism, Buddhism, and Jainism. The right facing swastika represents prosperity, good luck, cosmic order in Hinduism and the left-facing one represents universal harmony, eternity in Buddhism, far from what it's associated with now.",
+      "type": "text"
+    },
+    {
+      "id": "9ee163d4-36fc-4b62-bd5a-71070b67a35a",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/89459185-e90a-4416-a452-70996aec3e25.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Shrine",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/89459185-e90a-4416-a452-70996aec3e25_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/cb3042be-84e5-4eca-96af-d068eb3f3f9b.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "post",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/cb3042be-84e5-4eca-96af-d068eb3f3f9b_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/f9e99628-332f-4b75-9787-9f3cff9e2dba.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "temple",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/f9e99628-332f-4b75-9787-9f3cff9e2dba_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ce0ef72f-2bc3-4abb-ba8d-ffb088858c31",
+      "text": "I hit the hay at 8pm to catch up on sleep. \nFlying to Pokhara tomorrow!",
+      "type": "text"
+    },
+    {
+      "id": "fab84178-5b60-4afa-9efa-10fe11717473",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-13/c589ac7e-6cfb-405e-97a3-52f655270152.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Motorcycles passing through the narrow streets of Kathmandu"
     }
   ],
-  "updatedAt": "2026-10-13T03:59:37.856483+00:00"
+  "updatedAt": "2026-10-14T06:41:43.919517+00:00"
 }

@@ -1,0 +1,66 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-14",
+  "location": "Kathmandu, Pokhara",
+  "published": true,
+  "blocks": [
+    {
+      "id": "c2920539-352a-40b7-9f23-d680eb5d8281",
+      "text": "I went to a bakery this morning, about a 10 minute walk away, that had local sweets that are only found in the Kathmandu valley. The Sel Roti you can find across Nepal, but another treat was a crispy Kakhamari (or Jalebi) wih chaku (sugarcane wheat paste) wrapped in a flexible thin pita thing.",
+      "type": "text"
+    },
+    {
+      "id": "7404b39f-18c4-442d-92fb-df51e2ea56f2",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/33335190-dc8a-402e-91d7-6eb54ff44eaa.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Freshly fried Sel Roti",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/33335190-dc8a-402e-91d7-6eb54ff44eaa_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/5415ea57-e7e5-4b31-b914-29bb1eb0d8ac.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Not sure",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/5415ea57-e7e5-4b31-b914-29bb1eb0d8ac_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/eb8fe152-8bb4-4cce-8933-bb40724296f8.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Local sweet",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/eb8fe152-8bb4-4cce-8933-bb40724296f8_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "3a66f307-8472-4b72-aed1-a82db9d6f934",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/60168708-82cd-4454-a463-fce6a8f891a2.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Frying Sel Roti on the street"
+    },
+    {
+      "id": "42a87cb8-7178-4481-959b-3c642fd7396d",
+      "text": "Before my flight, I got a paratha filled with buffalo meat, wrapped around a fried egg (160 rupees).",
+      "type": "text"
+    },
+    {
+      "id": "829ba4b4-ca03-4cc1-b456-dd5193c77e14",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/48f8a0ea-a08b-4427-bd3f-ea10a3a1be7f.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Buffalo keema egg paratha",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/48f8a0ea-a08b-4427-bd3f-ea10a3a1be7f_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-14T06:52:04.835206+00:00"
+}

@@ -46,6 +46,13 @@
     "date": "2026-10-13",
     "location": "Kathmandu",
     "published": true,
-    "updatedAt": "2026-10-13T03:59:37.856483+00:00"
+    "updatedAt": "2026-10-14T06:41:43.919517+00:00"
+  },
+  {
+    "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+    "date": "2026-10-14",
+    "location": "Kathmandu, Pokhara",
+    "published": true,
+    "updatedAt": "2026-10-14T06:52:04.835206+00:00"
   }
 ]
