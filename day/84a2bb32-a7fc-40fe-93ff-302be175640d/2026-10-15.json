@@ -1,0 +1,80 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-15",
+  "location": "Pokhara",
+  "published": true,
+  "blocks": [
+    {
+      "id": "2074be02-e6ae-413e-8f5e-548c34b22e3a",
+      "text": "Paragliding",
+      "type": "text"
+    },
+    {
+      "id": "73d83bb1-ad1f-4c19-895e-89f379ca8e42",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/993b4639-b05f-4ee1-9dff-efb665f08732.jpg",
+          "width": 1600,
+          "height": 1200,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/993b4639-b05f-4ee1-9dff-efb665f08732_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/7c93e025-ebb9-44e6-91c1-cbe9f0d5a796.jpg",
+          "width": 1600,
+          "height": 1200,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/7c93e025-ebb9-44e6-91c1-cbe9f0d5a796_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/63945c21-27ed-467f-80e3-eb043fe51a84.jpg",
+          "width": 1600,
+          "height": 1200,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/63945c21-27ed-467f-80e3-eb043fe51a84_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "f98deb6f-06e4-4069-b1e9-31ed2ab8c557",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/842749a8-7159-42e4-890c-e57a35d44ac0.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Paragliding acrobatics"
+    },
+    {
+      "id": "4cd6b72d-cfb6-4dd0-8f4a-60c532da729f",
+      "text": "Dinner",
+      "type": "text"
+    },
+    {
+      "id": "175bb45d-7839-403a-bc22-d8c47c3c0d53",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/3259b8c5-db5f-4c07-9066-18babac9de40.jpg",
+          "width": 1600,
+          "height": 1200,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/3259b8c5-db5f-4c07-9066-18babac9de40_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/8f353336-7e6a-4be1-9ba3-4937adf01e27.jpg",
+          "width": 1200,
+          "height": 1600,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/8f353336-7e6a-4be1-9ba3-4937adf01e27_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/bbb5b71e-976d-412a-97a2-d7090d5911df.jpg",
+          "width": 1200,
+          "height": 1600,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/bbb5b71e-976d-412a-97a2-d7090d5911df_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/3c1f3898-b021-4cd8-a00d-1957fd53e43e.jpg",
+          "width": 1600,
+          "height": 1200,
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-15/3c1f3898-b021-4cd8-a00d-1957fd53e43e_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-17T04:35:10.731451+00:00"
+}

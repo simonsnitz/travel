@@ -1,0 +1,81 @@
+{
+  "tripId": "84a2bb32-a7fc-40fe-93ff-302be175640d",
+  "date": "2026-10-16",
+  "location": "Pokhara",
+  "published": true,
+  "blocks": [
+    {
+      "id": "e881674e-ef14-4c49-b7dd-3832bcab986a",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/517cff22-8d97-4783-bf0c-506c1bf01af1.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Motorcycle ride across the mountains"
+    },
+    {
+      "id": "1962cfff-bd4b-4e68-9c06-060528cb29a9",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/02e015b7-ba2a-4797-9c90-80f07dab91d0.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Thali",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/02e015b7-ba2a-4797-9c90-80f07dab91d0_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/077e606d-9cd6-451e-9bc6-76f70c72ecd2.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Coffee plant",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/077e606d-9cd6-451e-9bc6-76f70c72ecd2_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/5a1a332c-270d-49e9-a754-c7d5f4d3e363.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Dried yak cheese",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/5a1a332c-270d-49e9-a754-c7d5f4d3e363_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "791df7b3-3412-4c43-ac7d-cecf837d5e0f",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/4f7929bb-bc85-4910-b299-d2bfbdcf2c7f.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Shiva",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/4f7929bb-bc85-4910-b299-d2bfbdcf2c7f_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/d765fe13-7087-48a5-9100-91444def7ba7.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "World Peace Pagoda",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/d765fe13-7087-48a5-9100-91444def7ba7_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "dd244265-8075-464e-afb2-12577ca685ec",
+      "text": "Korean food with the group, then live music (Bollywood hits).",
+      "type": "text"
+    },
+    {
+      "id": "7f4a67b4-70b6-4619-816d-17ca9d98e353",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/c8aedb6b-da60-42f2-9295-b97c5d8c50c7.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Live music",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-16/c8aedb6b-da60-42f2-9295-b97c5d8c50c7_thumb.jpg"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-17T04:41:47.465802+00:00"
+}

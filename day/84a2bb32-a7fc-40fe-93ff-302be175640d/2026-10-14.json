@@ -6,7 +6,7 @@
   "blocks": [
     {
       "id": "c2920539-352a-40b7-9f23-d680eb5d8281",
-      "text": "I went to a bakery this morning, about a 10 minute walk away, that had local sweets that are only found in the Kathmandu valley. The Sel Roti you can find across Nepal, but another treat was a crispy Kakhamari (or Jalebi) wih chaku (sugarcane wheat paste) wrapped in a flexible thin pita thing.",
+      "text": "I went to a bakery this morning, about a 10 minute walk away, that had local sweets that are only found in the Kathmandu valley. The Sel Roti you can find across Nepal, but another treat was a crispy Kakhamari (or Jalebi) with chaku (sugarcane wheat paste) wrapped in a flexible thin pita thing.",
       "type": "text"
     },
     {
@@ -60,7 +60,69 @@
           "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/48f8a0ea-a08b-4427-bd3f-ea10a3a1be7f_thumb.jpg"
         }
       ]
+    },
+    {
+      "id": "51768f85-9e5d-42d7-a729-8d8d397963f3",
+      "text": "Flight to Pokhara",
+      "type": "text"
+    },
+    {
+      "id": "480935e9-343a-46d8-be31-6e3efa5c0829",
+      "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/9d8a63dd-b134-486f-b963-3c72545d6e47.mov",
+      "type": "video",
+      "source": "upload",
+      "caption": "Flight to Pokhara"
+    },
+    {
+      "id": "6a334e3e-001e-48bc-9078-fd9fbb4e4d90",
+      "text": "Pokhara",
+      "type": "text"
+    },
+    {
+      "id": "531147c1-0288-4260-8d8e-aa627794a1a9",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/0537fe9a-4647-492b-87e7-c164bde13512.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "View from my room",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/0537fe9a-4647-492b-87e7-c164bde13512_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/d266250a-98d8-4eb3-82a8-8631c807d93c.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Paddleboarding on the lake",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/d266250a-98d8-4eb3-82a8-8631c807d93c_thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "a1345b90-ae7b-4c4c-8876-5aa62087f7e7",
+      "text": "Night",
+      "type": "text"
+    },
+    {
+      "id": "c024561c-8c2e-4e23-8a0d-36adb2056061",
+      "type": "photos",
+      "photos": [
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/b7810014-1581-44e0-a1ca-d0d71cb88bc5.jpg",
+          "width": 1600,
+          "height": 1200,
+          "caption": "Chinese food with the gang",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/b7810014-1581-44e0-a1ca-d0d71cb88bc5_thumb.jpg"
+        },
+        {
+          "path": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/1fdafc57-6cb0-4275-9463-4979726d4a21.jpg",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Drinks with Samira",
+          "thumbPath": "84a2bb32-a7fc-40fe-93ff-302be175640d/2026-10-14/1fdafc57-6cb0-4275-9463-4979726d4a21_thumb.jpg"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T06:52:04.835206+00:00"
+  "updatedAt": "2026-10-17T04:23:29.358635+00:00"
 }
